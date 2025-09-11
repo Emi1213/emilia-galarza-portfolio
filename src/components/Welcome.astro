@@ -1,19 +1,24 @@
 ---
+import { Button } from '@heroui/react';
 import astroLogo from '../assets/astro.svg';
 import background from '../assets/background.svg';
+import FloatingNavbar from './navbar/FloatingNavbar';
 ---
 
 <div id="container">
 	<img id="background" src={background.src} alt="" fetchpriority="high" />
+	<FloatingNavbar />
 	<main>
+		
 		<section id="hero">
 			<a href="https://astro.build"
 				><img src={astroLogo.src} width="115" height="48" alt="Astro Homepage" /></a
 			>
-			<h1>
+			<h1 class="underline">
 				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
 			</h1>
 			<section id="links">
+				<Button color="primary">Prueba de boton</Button>	
 				<a class="button" href="https://docs.astro.build">Read our docs</a>
 				<a href="https://astro.build/chat"
 					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
@@ -26,6 +31,7 @@ import background from '../assets/background.svg';
 			</section>
 		</section>
 	</main>
+
 
 	<a href="https://astro.build/blog/astro-5/" id="news" class="box">
 		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
