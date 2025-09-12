@@ -3,11 +3,11 @@ import { PROFILE_CARD_DATA } from "../../../../constants/profile/profile_card";
 export default function Profile_Card() {
     return (
         <div className="bg-gray-800 rounded-3xl p-8 max-w-sm mx-auto text-center text-white">
-            <div className="bg-gradient-to-br from-purple-600 to-purple-800 rounded-2xl p-4 mb-6">
+            <div className="rounded-2xl p-4 mb-6">
                 <img 
                     src={PROFILE_CARD_DATA.avatar} 
                     alt="Profile Avatar" 
-                    className="w-full h-48 object-cover rounded-xl"
+                    className="w-full h-full object-cover rounded-xl"
                 />
             </div>
             
