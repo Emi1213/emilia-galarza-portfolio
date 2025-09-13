@@ -1,32 +1,51 @@
 import FloatingNavbar from "../../../../components/navbar/FloatingNavbar";
 import ProfileCard from "../../../../components/profile_card";
 import RecentProjects from "../components/RecentProjects";
-import { useRef } from "react";
+import { useEffect, useState } from "react";
 
-export default function Hero_Feature(){
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
+export default function Hero_Feature() {
+  const [scrollY, setScrollY] = useState(0);
 
-    return <>  
-    <div id="container" className="bg-black">
-        <FloatingNavbar scrollContainer={scrollContainerRef} />
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const maxScroll = 128; 
+  const profileTransformY = Math.min(scrollY, maxScroll);
+
+  return (
+    <>
+      <div id="container" className="bg-black">
+        <FloatingNavbar />
         <div className="max-w-6xl mx-auto">
-            <div className="flex">
-                <div className="w-1/3 h-screen overflow-y-auto scrollbar-hide">
-                    <div className="h-32"></div>
-                    <div className="sticky top-32 m-4 flex items-center justify-center">
-                        <ProfileCard />
-                    </div>
-                    <div className="h-screen"></div> {/* Espaciado inferior para permitir scroll */}
-                </div>
-                
-                {/* Lado derecho - Área con scroll */}
-                <div ref={scrollContainerRef} className="w-2/3 overflow-y-auto h-screen scrollbar-hide">
-                    <div className="pt-32"> 
-                        <RecentProjects />
-                    </div>
-                </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <div className="h-32"></div>
+              <div
+                className="sticky top-40"
+                style={{
+                  transform: `translateY(-${profileTransformY}px)`,
+                }}
+              >
+                <ProfileCard />
+              </div>
             </div>
+
+            <div className="w-2/3">
+              <div className="pt-40">
+                <RecentProjects />
+              </div>
+              <div className="h-screen bg-black"></div>
+              <div className="h-screen bg-black"></div>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
     </>
+  );
 }

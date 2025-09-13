@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import type { RefObject } from 'react';
 import { 
   Home, 
   User, 
@@ -8,18 +7,14 @@ import {
   Mail
 } from 'lucide-react';
 
-interface FloatingNavbarProps {
-  scrollContainer?: RefObject<HTMLDivElement | null>;
-}
-
-const FloatingNavbar = ({ scrollContainer }: FloatingNavbarProps) => {
+const FloatingNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [mouseY, setMouseY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = scrollContainer?.current?.scrollTop || window.scrollY;
+      const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 100);
     };
 
@@ -27,17 +22,14 @@ const FloatingNavbar = ({ scrollContainer }: FloatingNavbarProps) => {
       setMouseY(e.clientY);
     };
 
-    // Listen to scroll on the specific container if provided, otherwise window
-    const scrollElement = scrollContainer?.current || window;
-    
-    scrollElement.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
     window.addEventListener('mousemove', handleMouseMove);
     
     return () => {
-      scrollElement.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [scrollContainer]);
+  }, []);
 
   // Show navbar if hovered or mouse is near top (within 80px)
   const shouldShowNavbar = !isScrolled || isHovered || mouseY < 80;
@@ -55,8 +47,7 @@ const FloatingNavbar = ({ scrollContainer }: FloatingNavbarProps) => {
       {/* Collapsed indicator line */}
       {isScrolled && !shouldShowNavbar && (
         <div 
-          className=" 
-                     rounded-full opacity-60 transition-all duration-150"
+          className="rounded-full opacity-60 transition-all duration-150"
         />
       )}
 
