@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import type { RefObject } from 'react';
 import { 
   Home, 
   User, 
@@ -7,18 +8,39 @@ import {
   Mail
 } from 'lucide-react';
 
-const FloatingNavbar = () => {
+interface FloatingNavbarProps {
+  scrollContainer?: RefObject<HTMLDivElement | null>;
+}
+
+const FloatingNavbar = ({ scrollContainer }: FloatingNavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [mouseY, setMouseY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
+      const scrollPosition = scrollContainer?.current?.scrollTop || window.scrollY;
+      setIsScrolled(scrollPosition > 100);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const handleMouseMove = (e: MouseEvent) => {
+      setMouseY(e.clientY);
+    };
+
+    // Listen to scroll on the specific container if provided, otherwise window
+    const scrollElement = scrollContainer?.current || window;
+    
+    scrollElement.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      scrollElement.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [scrollContainer]);
+
+  // Show navbar if hovered or mouse is near top (within 80px)
+  const shouldShowNavbar = !isScrolled || isHovered || mouseY < 80;
 
   const menuItems = [
     { name: 'Home', href: '#inicio', icon: Home },
@@ -30,15 +52,27 @@ const FloatingNavbar = () => {
 
   return (
     <>
+      {/* Collapsed indicator line */}
+      {isScrolled && !shouldShowNavbar && (
+        <div 
+          className=" 
+                     rounded-full opacity-60 transition-all duration-150"
+        />
+      )}
+
+      {/* Main navbar */}
       <nav
         className={`
-          fixed top-4 left-1/2 transform -translate-x-1/2 z-50 
-          flex items-center gap-2 px-4 py-3 rounded-full transition-all duration-300 ease-in-out
-          ${isScrolled 
-            ? 'bg-gray-950/90 backdrop-blur-xl border border-gray-800/80 shadow-2xl shadow-black/40' 
-            : 'bg-gray-900/80 backdrop-blur-lg border border-gray-700/50 shadow-xl shadow-black/20'
+          fixed left-1/2 transform -translate-x-1/2 z-50 
+          flex items-center gap-2 px-4 py-3 rounded-full transition-all duration-300 ease-out
+          bg-gray-950/90 backdrop-blur-xl border border-gray-800/80 shadow-2xl shadow-black/40
+          ${shouldShowNavbar 
+            ? 'top-4 opacity-100 translate-y-0 scale-100' 
+            : 'top-0 opacity-0 -translate-y-full scale-90 pointer-events-none'
           }
         `}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <div className="flex items-center gap-2">
           {menuItems.map((item, index) => {

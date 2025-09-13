@@ -4,7 +4,7 @@ import { Image } from "@heroui/react";
 
 export default function RecentProjects() {
   return (
-    <section className="py-16 px-12 bg-black">
+    <section className="pb-16 px-12 bg-black">
       <div className="max-w-6xl mx-auto">        
         <div className="text-left mb-12 px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
