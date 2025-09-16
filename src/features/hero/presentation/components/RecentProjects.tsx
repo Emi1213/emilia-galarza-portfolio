@@ -11,7 +11,7 @@ export default function RecentProjects() {
             Recent Projects
           </h2>
           <h3 className="text-4xl md:text-5xl font-bold mb-8">
-            and <span className="text-purple-500">Achievements</span>
+            and <span className="text-primary-color">Achievements</span>
           </h3>
         </div>
 
