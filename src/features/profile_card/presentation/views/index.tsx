@@ -40,7 +40,7 @@ export default function Profile_Card() {
 
         
         </CardBody>
-        <Button color="primary" className="font-semibold py-3 px-8">Let's Talk</Button>
+        <Button  color="default" className="font-semibold py-3 px-8 bg-primary_custom-200!">Let's Talk</Button>
 
       </Card>
       

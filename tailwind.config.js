@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': {
+        'primary_custom': {
           50: 'rgb(168 85 247 / 0.1)',  
           100: 'rgb(168 85 247 / 0.2)', 
           200: 'rgb(168 85 247 / 0.3)', 

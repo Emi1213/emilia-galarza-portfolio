@@ -90,10 +90,10 @@ export default function Skills(){
                                 }}
                             >
                                 <Card 
-                                    className="p-6 hover:bg-primary-200 transition-all duration-300 cursor-pointer group h-full min-h-[140px] flex flex-col justify-center"
+                                    className="p-6 hover:bg-primary_custom-200 transition-all duration-300 cursor-pointer group h-full min-h-[140px] flex flex-col justify-center"
                                 >
                                     <div className="flex items-center gap-4 h-full">
-                                        <div className="p-3 bg-gray-700/50 rounded-xl group-hover:bg-primary-400 transition-colors flex-shrink-0">
+                                        <div className="p-3 bg-gray-700/50 rounded-xl group-hover:bg-primary_custom-400 transition-colors flex-shrink-0">
                                             <skill.icon className="w-8 h-8 text-white" />
                                         </div>
                                         <div className="flex-1 flex flex-col justify-center">
