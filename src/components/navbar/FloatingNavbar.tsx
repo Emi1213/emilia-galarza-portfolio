@@ -7,7 +7,12 @@ import {
   Mail
 } from 'lucide-react';
 
-const FloatingNavbar = () => {
+interface FloatingNavbarProps {
+  activeSection?: string;
+  onSectionChange?: (sectionId: string) => void;
+}
+
+const FloatingNavbar = ({ activeSection, onSectionChange }: FloatingNavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [mouseY, setMouseY] = useState(0);
@@ -35,12 +40,19 @@ const FloatingNavbar = () => {
   const shouldShowNavbar = !isScrolled || isHovered || mouseY < 80;
 
   const menuItems = [
-    { name: 'Home', href: '#inicio', icon: Home },
-    { name: 'About', href: '#about', icon: User },
-    { name: 'Projects', href: '#projects', icon: FolderOpen },
-    { name: 'Services', href: '#services', icon: Briefcase },
-    { name: 'Contact', href: '#contact', icon: Mail },
+    { name: 'Home', href: '#inicio', icon: Home, sectionId: 'hero' },
+    { name: 'About', href: '#about', icon: User, sectionId: 'about' },
+    { name: 'Projects', href: '#projects', icon: FolderOpen, sectionId: 'projects' },
+    { name: 'Services', href: '#services', icon: Briefcase, sectionId: 'services' },
+    { name: 'Contact', href: 'contact', icon: Mail, sectionId: 'contact' },
   ];
+
+  const handleItemClick = (item: typeof menuItems[0], e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onSectionChange && item.sectionId) {
+      onSectionChange(item.sectionId);
+    }
+  };
 
   return (
     <>
@@ -72,16 +84,21 @@ const FloatingNavbar = () => {
               <a
                 key={index}
                 href={item.href}
-                className="
+                onClick={(e) => handleItemClick(item, e)}
+                className={`
                   group relative flex items-center justify-center w-10 h-10 rounded-full 
-                  text-gray-400 hover:text-white transition-all duration-300 ease-out
+                  transition-all duration-300 ease-out
                   hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-pink-500/20
                   hover:shadow-lg hover:shadow-purple-500/25
                   before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-r 
                   before:from-purple-500 before:to-pink-500 before:opacity-0 before:transition-opacity 
                   before:duration-300 hover:before:opacity-20
                   transform hover:scale-110 active:scale-95
-                "
+                  ${activeSection === item.sectionId 
+                    ? 'text-white bg-purple-500/30 shadow-purple-500/50' 
+                    : 'text-gray-400 hover:text-white'
+                  }
+                `}
                 title={item.name}
               >
                 <IconComponent size={18} className="relative z-10" />
