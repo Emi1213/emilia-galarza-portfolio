@@ -1,15 +1,7 @@
-import { useState } from "react";
-import RecentProjects from "../../../hero/presentation/components/RecentProjects";
-import Skills from "../../../hero/presentation/components/Skills";
-import ProfileCard from "../../../../components/profile_card";
 import Hero from "../../../../components/hero";
+import ContactView from "../../../contact/presentation/views";
 
-const Contact = () => (
-  <div className="p-8 text-center">
-    <h2 className="text-4xl font-bold text-white mb-4">Contact Me</h2>
-    <p className="text-gray-400">Contact component coming soon...</p>
-  </div>
-);
+const Contact = () => <ContactView />;
 
 const About = () => (
   <div className="p-8 text-center">
