@@ -1,5 +1,9 @@
 import AppLayout from "../../features/layout/presentation/views/AppLayout";
 
-export default function App() {
-    return <AppLayout />;
+interface AppProps {
+    initialSection?: string;
+}
+
+export default function App({ initialSection = "hero" }: AppProps) {
+    return <AppLayout initialSection={initialSection} />;
 }
