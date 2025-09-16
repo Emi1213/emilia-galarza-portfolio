@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { navigationItems } from "../../features/hero/presentation/components/DynamicContent";
+import { navigationItems } from "../../features/layout/presentation/components/DynamicContent";
 
 
 interface SectionNavigationProps {

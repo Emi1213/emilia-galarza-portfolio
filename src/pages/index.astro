@@ -1,6 +1,6 @@
 ---
-import Hero from '../components/hero';
-import Welcome from '../components/Welcome.astro';
+import App from '../components/app';
+
 import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -8,5 +8,5 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<Hero client:load />
+	<App client:load/>
 </Layout>
