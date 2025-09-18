@@ -1,15 +1,19 @@
 import { RECENT_PROJECTS_DATA } from "../../../../constants/hero/recent_projects";
 import { Card, CardBody } from "@heroui/card";
 import { Image } from "@heroui/react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function RecentProjects() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="pb-16 px-12 bg-black">
+    <section className="pb-16 px-12 bg-black" ref={ref}>
       <div className="max-w-6xl mx-auto">        
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-left mb-12 px-4"
         >
@@ -26,16 +30,16 @@ export default function RecentProjects() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + (index * 0.1), duration: 0.6 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: isInView ? 0.4 + (index * 0.1) : 0, duration: 0.6 }}
             >
               <Card className="transition-all duration-300 group">
                 <CardBody className="p-0">
                   <motion.div 
                     className="relative overflow-hidden rounded-t-lg"
                     initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 + (index * 0.1), duration: 0.5 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                    transition={{ delay: isInView ? 0.5 + (index * 0.1) : 0, duration: 0.5 }}
                   >
                     <Image
                       src={project.imageUrl}
@@ -48,8 +52,8 @@ export default function RecentProjects() {
                   <motion.div 
                     className="p-6"
                     initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.6 + (index * 0.1), duration: 0.5 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    transition={{ delay: isInView ? 0.6 + (index * 0.1) : 0, duration: 0.5 }}
                   >
                     <h3 className="text-2xl font-bold mb-2">
                       {project.title}

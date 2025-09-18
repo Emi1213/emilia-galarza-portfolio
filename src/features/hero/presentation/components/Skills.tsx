@@ -1,6 +1,6 @@
 import { Card } from "@heroui/card";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { SKILLS_DATA } from "../../../../constants/hero/skills";
 import DotPagination from "../../../../components/common/DotPagination";
 
@@ -9,6 +9,9 @@ export default function Skills(){
     const [isAutoPlay, setIsAutoPlay] = useState(true);
     const [direction, setDirection] = useState(1); // 1 for next, -1 for prev
     const skillsPerPage = 6;
+    
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
     
     const totalPages = Math.ceil(SKILLS_DATA.length / skillsPerPage);
     const startIndex = (currentPage - 1) * skillsPerPage;
@@ -40,15 +43,20 @@ export default function Skills(){
     };
 
     return (
-        <div className="w-full max-w-6xl mx-auto px-16">
-            <div className="text-left mb-12 ">
+        <div className="w-full max-w-6xl mx-auto px-16" ref={ref}>
+            <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="text-left mb-12"
+            >
                 <h2 className="text-4xl md:text-5xl font-bold mb-4">
                     My <span className="text-white">Skills &</span>
                 </h2>
                 <h2 className="text-4xl md:text-5xl font-bold">
                     <span className="text-primary-color">Technologies</span>
                 </h2>
-            </div>
+            </motion.div>
             
             <div className="relative overflow-hidden mb-8">
                 <AnimatePresence mode="wait" custom={direction}>
@@ -82,10 +90,10 @@ export default function Skills(){
                             <motion.div
                                 key={startIndex + index}
                                 initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                                 transition={{ 
                                     duration: 0.4, 
-                                    delay: index * 0.1,
+                                    delay: isInView ? index * 0.1 : 0,
                                     ease: "easeOut" 
                                 }}
                             >
