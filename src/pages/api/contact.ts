@@ -4,10 +4,10 @@ import type { ContactFormData } from '../../features/contact/types/contact.inter
 import { createContactEmailTemplate, createAutoReplyTemplate } from '../../features/contact/templates/contact-template';
 
 // Variables de entorno - probando ambos métodos
-const emailTo = import.meta.env.SMTP_USER || import.meta.env.TO_EMAIL;
-const emailPass = import.meta.env.SMTP_PASS || import.meta.env.SMTP_PASS;
-const host = import.meta.env.SMTP_HOST || 'smtp.gmail.com';
-const fromEmail = import.meta.env.FROM_EMAIL || emailTo;
+const emailTo = process.env.SMTP_USER || process.env.TO_EMAIL;
+const emailPass = process.env.SMTP_PASS || process.env.SMTP_PASS;
+const host = process.env.SMTP_HOST || 'smtp.gmail.com';
+const fromEmail = process.env.FROM_EMAIL || emailTo;
 
 console.log('=== Variables de entorno API ===');
 console.log('host:', host);
