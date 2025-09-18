@@ -3,12 +3,9 @@ import { Card, CardBody } from "@heroui/card";
 import { Button } from "@heroui/button";
 import { Input, Textarea } from "@heroui/input";
 import { motion } from "framer-motion";
+import type{ ContactFormData } from "../../types/contact.interface";
+import { addToast } from "@heroui/toast";
 
-interface ContactFormData {
-  name: string;
-  email: string;
-  message: string;
-}
 
 export default function ContactForm() {
   const {
@@ -20,19 +17,43 @@ export default function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("Form data:", data);
-      alert("¡Mensaje enviado exitosamente!");
-      reset();
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        addToast({
+          title: "¡Mensaje enviado!",
+          description: "Te responderé pronto. Gracias por contactarme.",
+          color: "success"
+        });
+        reset();
+      } else {
+        addToast({
+          title: "Error al enviar",
+          description: result.message || "Ocurrió un error. Inténtalo de nuevo.",
+          color: "danger"
+        });
+      }
     } catch (error) {
-      alert("Error al enviar el mensaje. Inténtalo de nuevo.");
+      console.error('Error:', error);
+      addToast({
+        title: "Error de conexión",
+        description: "Verifica tu conexión a internet e inténtalo de nuevo.",
+        color: "danger"
+      });
     }
   };
 
   return (
     <section className="pb-16 px-12 bg-black">
       <div className="max-w-4xl mx-auto">
-        {/* Header - mismo estilo que RecentProjects */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -150,9 +171,6 @@ export default function ContactForm() {
                     size="lg"
                     isLoading={isSubmitting}
                     className="w-full font-semibold"
-                    as={motion.button}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
                   >
                     {isSubmitting ? "Sending..." : "Send"}
                   </Button>

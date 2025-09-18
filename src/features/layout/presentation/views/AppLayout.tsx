@@ -2,6 +2,7 @@ import FloatingNavbar from "../../../../components/navbar/FloatingNavbar";
 import ProfileCard from "../../../../components/profile_card";
 import { useEffect, useState } from "react";
 import DynamicContent from "../../../../features/layout/presentation/components/DynamicContent";
+import { Providers } from "../../../../components/providers/ToastProvider";
 
 interface AppLayoutProps {
   initialSection?: string;
@@ -20,7 +21,6 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Actualizar cuando cambie la sección inicial (útil para navegación)
   useEffect(() => {
     setActiveSection(initialSection);
   }, [initialSection]);
@@ -31,7 +31,6 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
   const handleSectionChange = (sectionId: string) => {
     setActiveSection(sectionId);
     
-    // Actualizar la URL sin recargar la página
     if (typeof window !== 'undefined') {
       const newUrl = sectionId === 'hero' ? '/' : `/${sectionId}`;
       window.history.pushState({}, '', newUrl);
@@ -39,11 +38,11 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
   };
 
   return (
-    <>
-      <div id="container" className="bg-black">
-        <FloatingNavbar 
-          activeSection={activeSection}
-          onSectionChange={handleSectionChange}
+    <Providers>
+        <div id="container" className="bg-black">
+          <FloatingNavbar
+            activeSection={activeSection}
+            onSectionChange={handleSectionChange}
         />
         <div className="max-w-6xl mx-auto">
           <div className="hidden md:flex">
@@ -75,6 +74,6 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
           </div>
         </div>
       </div>
-    </>
+    </Providers>
   );
 }
