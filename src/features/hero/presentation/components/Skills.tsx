@@ -18,25 +18,27 @@ export default function Skills(){
     const endIndex = startIndex + skillsPerPage;
     const currentSkills = SKILLS_DATA.slice(startIndex, endIndex);
 
-    // Auto-advance pages every 4 seconds
     useEffect(() => {
-        if (!isAutoPlay || totalPages <= 1) return;
+        if (!isAutoPlay || totalPages <= 1 || !isInView) return;
 
-        const interval = setInterval(() => {
-            setDirection(1);
-            setCurrentPage(prev => prev >= totalPages ? 1 : prev + 1);
-        }, 4000);
+        
+        const startDelay = setTimeout(() => {
+            const interval = setInterval(() => {
+                setDirection(1);
+                setCurrentPage(prev => prev >= totalPages ? 1 : prev + 1);
+            }, 4000);
 
-        return () => clearInterval(interval);
-    }, [isAutoPlay, totalPages]);
+            return () => clearInterval(interval);
+        }, 1000); 
 
-    // Pause auto-play on user interaction
+        return () => clearTimeout(startDelay);
+    }, [isAutoPlay, totalPages, isInView]);
+
     const handlePageClick = (page: number) => {
         setIsAutoPlay(false);
         setDirection(page > currentPage ? 1 : -1);
         setCurrentPage(page);
         
-        // Resume auto-play after 8 seconds of no interaction
         setTimeout(() => {
             setIsAutoPlay(true);
         }, 8000);

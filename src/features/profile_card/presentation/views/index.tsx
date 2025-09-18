@@ -2,47 +2,129 @@ import { Card, CardBody, CardHeader } from "@heroui/card";
 import { PROFILE_CARD_DATA } from "../../../../constants/profile/profile_card";
 import { Button } from "@heroui/button";
 import { Image } from "@heroui/react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function Profile_Card() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
   return (
     <>
-      <Card className="p-8 max-w-sm mx-auto text-center">
-        <CardHeader className="flex gap-3">
-          <div className="rounded-2xl p-4 mb-6">
-            <Image 
-            src={PROFILE_CARD_DATA.avatar}
+      <motion.div
+        ref={ref}
+        initial={{ 
+          scale: 0.3, 
+          opacity: 0,
+          filter: "blur(10px)"
+        }}
+        animate={isInView ? { 
+          scale: 1, 
+          opacity: 1,
+          filter: "blur(0px)"
+        } : {
+          scale: 0.3, 
+          opacity: 0,
+          filter: "blur(10px)"
+        }}
+        transition={{
+          duration: 0.8,
+          ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smooth effect
+          scale: {
+            type: "spring",
+            stiffness: 100,
+            damping: 15
+          }
+        }}
+      >
+        <Card className="p-8 max-w-sm mx-auto text-center">
+          <CardHeader className="flex gap-3">
+            <motion.div 
+              className="rounded-2xl p-4 mb-6"
+              initial={{ scale: 0.5, rotate: -10 }}
+              animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0.5, rotate: -10 }}
+              transition={{ delay: 0.3, duration: 0.6, type: "spring" }}
+            >
+              <Image 
+                src={PROFILE_CARD_DATA.avatar}
                 alt="Profile Avatar"
                 className="object-cover rounded-xl"
-            >
-            </Image>
-          </div>
-        </CardHeader>
+              />
+            </motion.div>
+          </CardHeader>
         <CardBody className="overflow-visible text-center">
-            <h1 className="text-3xl font-bold mb-2">{PROFILE_CARD_DATA.name}</h1>
+          <motion.h1 
+            className="text-3xl font-bold mb-2"
+            initial={{ y: 20, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+          >
+            {PROFILE_CARD_DATA.name}
+          </motion.h1>
 
-        <p className="text-gray-300 mb-2">{PROFILE_CARD_DATA.bio}</p>
+          <motion.p 
+            className="text-gray-300 mb-2"
+            initial={{ y: 20, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
+            {PROFILE_CARD_DATA.bio}
+          </motion.p>
 
-        <p className="text-gray-400 mb-6">{PROFILE_CARD_DATA.location}</p>
+          <motion.p 
+            className="text-gray-400 mb-6"
+            initial={{ y: 20, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          >
+            {PROFILE_CARD_DATA.location}
+          </motion.p>
 
-        <div className="flex justify-center space-x-6 mb-8">
-          {PROFILE_CARD_DATA.socialLinks.map((link, index) => (
-            <a
-              key={index}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              {link.icon || link.platform}
-            </a>
-          ))}
-        </div>
-
-        
+          <motion.div 
+            className="flex justify-center space-x-6 mb-8"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+            transition={{ delay: 0.8, duration: 0.4, type: "spring" }}
+          >
+            {PROFILE_CARD_DATA.socialLinks.map((link, index) => (
+              <motion.a
+                key={index}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors"
+                initial={{ scale: 0, rotate: -45 }}
+                animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -45 }}
+                transition={{ 
+                  delay: 0.9 + (index * 0.1), 
+                  duration: 0.3, 
+                  type: "spring",
+                  stiffness: 200 
+                }}
+                whileHover={{ scale: 1.2, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {link.icon || link.platform}
+              </motion.a>
+            ))}
+          </motion.div>
         </CardBody>
-        <Button  color="default" className="font-semibold py-3 px-8 bg-primary_custom-400!">Let's Talk</Button>
+
+        <motion.div
+          initial={{ y: 30, opacity: 0, scale: 0.8 }}
+          animate={isInView ? { y: 0, opacity: 1, scale: 1 } : { y: 30, opacity: 0, scale: 0.8 }}
+          transition={{ delay: 1.2, duration: 0.5, type: "spring" }}
+        >
+          <Button 
+            color="default" 
+            className="font-semibold py-3 px-8 bg-primary_custom-400!"
+          >
+            Let's Talk
+          </Button>
+        </motion.div>
 
       </Card>
+      </motion.div>
       
     </>
   );
