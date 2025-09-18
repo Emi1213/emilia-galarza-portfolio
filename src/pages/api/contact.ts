@@ -110,47 +110,6 @@ export const POST: APIRoute = async ({ request }) => {
       throw error;
     }
 
-    /* 
-    // CÓDIGO ORIGINAL EN PARALELO - COMENTADO PARA TESTING
-    let results;
-    try {
-      results = await Promise.allSettled([
-        mailTransporter.sendMail(mainMailDetails),
-        mailTransporter.sendMail(replyMailDetails)
-      ]);
-      
-      const [mainResult, replyResult] = results;
-      
-      // Verificar resultado del email principal (crítico)
-      if (mainResult.status === 'fulfilled') {
-        console.log('✅ Email principal enviado:', mainResult.value.messageId);
-      } else {
-        console.error('❌ Error en email principal:', mainResult.reason);
-        throw mainResult.reason;
-      }
-      
-      // Verificar resultado del auto-reply (no crítico)
-      if (replyResult.status === 'fulfilled') {
-        console.log('✅ Auto-reply enviado:', replyResult.value.messageId);
-      } else {
-        console.warn('⚠️ Auto-reply falló (no crítico):', replyResult.reason);
-      }
-
-      return new Response(JSON.stringify({ 
-        success: true, 
-        message: '¡Mensaje enviado exitosamente! Te responderé pronto.',
-        messageId: mainResult.value.messageId
-      }), { 
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      });
-      
-    } catch (error) {
-      console.error('Error enviando emails:', error);
-      throw error;
-    }
-    */
-
   } catch (error) {
     console.error('=== API Error ===', error);
     return new Response(JSON.stringify({ 
