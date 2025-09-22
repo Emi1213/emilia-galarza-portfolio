@@ -26,7 +26,7 @@ export default function DotPagination({
     if (totalPages <= 1) return null;
 
     return (
-        <div className={cn("flex justify-center", className)}>
+        <div className={cn("flex justify-center mb-12", className)}>
             <ul className="flex gap-3 items-center">
                 {range.map((page) => {
                     if (page === PaginationItemType.DOTS) {
