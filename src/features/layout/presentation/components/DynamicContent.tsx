@@ -1,4 +1,4 @@
-import Hero from "../../../../components/hero";
+import Hero_Feature from "../../../hero/presentation/views";
 import ContactView from "../../../contact/presentation/views";
 
 const Contact = () => <ContactView />;
@@ -35,7 +35,7 @@ export const navigationItems: NavItem[] = [
     id: "hero",
     label: "Hero",
     component: () => (
-      <Hero />
+      <Hero_Feature />
     ),
   },
   { id: "about", label: "About", component: About },
@@ -62,7 +62,7 @@ export default function DynamicContent({ activeSection }: DynamicContentProps) {
   const Component = currentItem.component;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pb-33">
       <Component />
     </div>
   );

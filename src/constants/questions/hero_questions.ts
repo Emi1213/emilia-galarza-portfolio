@@ -12,5 +12,10 @@ export const HERO_QUESTIONS: Question[] = [
   {
     question: "What is your pricing model?",
     answer: "We offer competitive pricing based on the scope of the project. Please contact us for a detailed quote."
-  }
+  },
+    {
+    question: "What technologies do you specialize in?",
+    answer: "We specialize in modern technologies such as React, Node.js, and Python."
+  },
+
 ];

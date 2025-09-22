@@ -62,8 +62,7 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
               <div className="pt-40">
                 <DynamicContent activeSection={activeSection} />
               </div>
-              <div className="h-screen bg-black"></div>
-              <div className="h-screen bg-black"></div>
+              
             </div>
           </div>
           <div className="md:hidden">
