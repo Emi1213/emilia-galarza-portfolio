@@ -12,10 +12,15 @@ interface AboutMeComponentProps {
 export default function AboutMeComponent({ data, index }: AboutMeComponentProps) {
   const isImageRight = index % 2 === 0; // Par = imagen derecha, Impar = imagen izquierda
   const cardRef = useRef(null);
+  
+  // Para la primera card en móvil, usar margin más pequeño para que aparezca más fácil
+  const isFirstCard = index === 0;
+  const margin = isFirstCard ? "-50px" : "-100px";
+  
   const isInView = useInView(cardRef, { 
     once: true, 
-    margin: "-100px",
-    amount: 0.3 
+    margin: margin,
+    amount: 0.2 // Reducido para que aparezca más rápido
   });
   
   return (
@@ -24,8 +29,8 @@ export default function AboutMeComponent({ data, index }: AboutMeComponentProps)
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ 
-        delay: 0.2, 
-        duration: 0.8,
+        delay: 0.1, // Reducido de 0.2 a 0.1
+        duration: 0.6, // Reducido de 0.8 a 0.6
         ease: [0.25, 0.25, 0.25, 0.75]
       }}
       className="mb-8"
