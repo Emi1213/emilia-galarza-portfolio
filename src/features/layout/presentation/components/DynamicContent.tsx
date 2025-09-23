@@ -1,14 +1,10 @@
 import Hero_Feature from "../../../hero/presentation/views";
 import ContactView from "../../../contact/presentation/views";
+import AboutMe from "../../../../components/about";
 
 const Contact = () => <ContactView />;
 
-const About = () => (
-  <div className="p-8 text-center">
-    <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
-    <p className="text-gray-400">About component coming soon...</p>
-  </div>
-);
+const About = () => <AboutMe />;
 
 const Projects = () => (
   <div className="p-8 text-center">
