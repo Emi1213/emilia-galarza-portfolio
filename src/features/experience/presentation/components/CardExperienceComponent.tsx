@@ -7,9 +7,10 @@ interface CardExperienceComponentProps {
   data: Experience;
   index: number;
   isInView: boolean;
+  onCardClick: (experience: Experience) => void;
 }
 
-export default function CardExperienceComponent({ data, index, isInView }: CardExperienceComponentProps) {
+export default function CardExperienceComponent({ data, index, isInView, onCardClick }: CardExperienceComponentProps) {
   // Formatear las fechas
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -22,6 +23,17 @@ export default function CardExperienceComponent({ data, index, isInView }: CardE
   const startDate = formatDate(data.start_date);
   const endDate = data.end_date ? formatDate(data.end_date) : 'Present';
 
+  // Función para navegar al detalle
+  const handleCardClick = () => {
+    console.log('🔥 Card clicked!', data.position, data.id);
+    console.log('📋 Experience data:', data);
+    console.log('🔧 onCardClick function:', typeof onCardClick);
+    onCardClick(data);
+  };
+
+  // Test básico para ver si el componente se está renderizando
+  console.log('🎯 Card component rendered:', data.position);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -31,9 +43,26 @@ export default function CardExperienceComponent({ data, index, isInView }: CardE
         delay: isInView ? index * 0.1 : 0,
         ease: "easeOut" 
       }}
+      onClick={(e) => {
+        e.stopPropagation();
+        console.log('🎯 Motion div clicked!', data.position);
+        handleCardClick();
+      }}
+      className="cursor-pointer"
     >
-      <Card className="p-6 hover:bg-primary_custom-200 transition-all duration-300 cursor-pointer group h-full min-h-[200px]">
-        <CardBody className="p-0">
+      <Card 
+        className="p-6 hover:bg-primary_custom-200 transition-all duration-300 cursor-pointer group h-full min-h-[200px]"
+        onMouseDown={() => console.log('🖱️ Mouse down on card:', data.position)}
+        onMouseUp={() => console.log('🖱️ Mouse up on card:', data.position)}
+      >
+        <CardBody 
+          className="p-0"
+          onClick={(e) => {
+            e.stopPropagation();
+            console.log('📋 CardBody clicked!', data.position);
+            handleCardClick();
+          }}
+        >
         
           <div className="mb-4">
             <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-primary-color transition-colors">

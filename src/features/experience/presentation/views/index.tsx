@@ -2,10 +2,17 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { EXPERIENCE_DATA } from "../../../../constants/experience/experience_data";
 import CardExperienceComponent from "../components/CardExperienceComponent";
+import type { Experience } from "../../types/experience.interface";
 
-export default function Experience_Feature() {
+interface Experience_FeatureProps {
+  onExperienceSelect: (experience: Experience) => void;
+}
+
+export default function Experience_Feature({ onExperienceSelect }: Experience_FeatureProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  console.log('🔄 Experience_Feature render - isInView:', isInView);
 
   return (
     <section className="pb-16 px-12 bg-black" ref={ref}>
@@ -33,6 +40,7 @@ export default function Experience_Feature() {
               data={experience}
               index={index}
               isInView={isInView}
+              onCardClick={onExperienceSelect}
             />
           ))}
         </div>

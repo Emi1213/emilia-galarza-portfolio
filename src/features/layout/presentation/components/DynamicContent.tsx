@@ -1,20 +1,10 @@
+import { useState, useMemo } from "react";
 import Hero_Feature from "../../../hero/presentation/views";
 import ContactView from "../../../contact/presentation/views";
 import AboutMe from "../../../../components/about";
-import MyExperience from "../../../../components/experience";
-
-const Contact = () => <ContactView />;
-
-const About = () => <AboutMe />;
-
-const Projects = () => (
-  <div className="p-8 text-center">
-    <h2 className="text-4xl font-bold text-white mb-4">My Projects</h2>
-    <p className="text-gray-400">Projects component coming soon...</p>
-  </div>
-);
-
-const Experience = () => <MyExperience />;
+import Experience_Feature from "../../../experience/presentation/views";
+import ExperienceDetailFeature from "../../../experience/presentation/views/detail";
+import type { Experience } from "../../../experience/types/experience.interface";
 
 export interface NavItem {
   id: string;
@@ -22,25 +12,59 @@ export interface NavItem {
   component: React.ComponentType;
 }
 
-export const navigationItems: NavItem[] = [
-  {
-    id: "hero",
-    label: "Hero",
-    component: () => (
-      <Hero_Feature />
-    ),
-  },
-  { id: "about", label: "About", component: About },
-  { id: "projects", label: "Projects", component: Projects },
-  { id: "experience", label: "Experience", component: Experience },
-  { id: "contact", label: "Contact", component: Contact },
-];
-
 interface DynamicContentProps {
   activeSection: string;
 }
 
 export default function DynamicContent({ activeSection }: DynamicContentProps) {
+  const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null);
+
+  const handleExperienceSelect = (experience: Experience) => {
+    console.log('🎯 Experience selected:', experience.position);
+    setSelectedExperience(experience);
+  };
+
+  const handleBackToExperiences = () => {
+    console.log('🔙 Back to experiences');
+    setSelectedExperience(null);
+  };
+
+  // Memoizar los componentes para evitar recreaciones
+  const Contact = () => <ContactView />;
+  const About = () => <AboutMe />;
+  const Projects = () => (
+    <div className="p-8 text-center">
+      <h2 className="text-4xl font-bold text-white mb-4">My Projects</h2>
+      <p className="text-gray-400">Projects component coming soon...</p>
+    </div>
+  );
+
+  // Memoizar el contenido de Experience para evitar recreaciones
+  const experienceContent = useMemo(() => {
+    if (selectedExperience) {
+      return (
+        <ExperienceDetailFeature 
+          experience={selectedExperience} 
+          onBack={handleBackToExperiences}
+        />
+      );
+    }
+    return <Experience_Feature onExperienceSelect={handleExperienceSelect} />;
+  }, [selectedExperience]);
+
+  // Memoizar navigationItems para evitar recreaciones
+  const navigationItems: NavItem[] = useMemo(() => [
+    {
+      id: "hero",
+      label: "Hero",
+      component: () => <Hero_Feature />,
+    },
+    { id: "about", label: "About", component: About },
+    { id: "projects", label: "Projects", component: Projects },
+    { id: "experience", label: "Experience", component: () => experienceContent },
+    { id: "contact", label: "Contact", component: Contact },
+  ], [experienceContent]);
+
   const currentItem = navigationItems.find((item) => item.id === activeSection);
 
   if (!currentItem) {
