@@ -43,7 +43,7 @@ const FloatingNavbar = ({ activeSection, onSectionChange }: FloatingNavbarProps)
     { name: 'Home', href: '#inicio', icon: Home, sectionId: 'hero' },
     { name: 'About', href: '#about', icon: User, sectionId: 'about' },
     { name: 'Projects', href: '#projects', icon: FolderOpen, sectionId: 'projects' },
-    { name: 'Services', href: '#services', icon: Briefcase, sectionId: 'services' },
+    { name: 'Experience', href: '#experience', icon: Briefcase, sectionId: 'experience' },
     { name: 'Contact', href: 'contact', icon: Mail, sectionId: 'contact' },
   ];
 

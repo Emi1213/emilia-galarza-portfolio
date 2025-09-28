@@ -13,10 +13,10 @@ const Projects = () => (
   </div>
 );
 
-const Services = () => (
+const Experience = () => (
   <div className="p-8 text-center">
-    <h2 className="text-4xl font-bold text-white mb-4">My Services</h2>
-    <p className="text-gray-400">Services component coming soon...</p>
+    <h2 className="text-4xl font-bold text-white mb-4">My Experience</h2>
+    <p className="text-gray-400">Experience component coming soon...</p>
   </div>
 );
 
@@ -36,7 +36,7 @@ export const navigationItems: NavItem[] = [
   },
   { id: "about", label: "About", component: About },
   { id: "projects", label: "Projects", component: Projects },
-  { id: "services", label: "Services", component: Services },
+  { id: "experience", label: "Experience", component: Experience },
   { id: "contact", label: "Contact", component: Contact },
 ];
 
