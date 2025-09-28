@@ -1,6 +1,7 @@
 import Hero_Feature from "../../../hero/presentation/views";
 import ContactView from "../../../contact/presentation/views";
 import AboutMe from "../../../../components/about";
+import MyExperience from "../../../../components/experience";
 
 const Contact = () => <ContactView />;
 
@@ -13,12 +14,7 @@ const Projects = () => (
   </div>
 );
 
-const Experience = () => (
-  <div className="p-8 text-center">
-    <h2 className="text-4xl font-bold text-white mb-4">My Experience</h2>
-    <p className="text-gray-400">Experience component coming soon...</p>
-  </div>
-);
+const Experience = () => <MyExperience />;
 
 export interface NavItem {
   id: string;
