@@ -27,14 +27,14 @@ export default function ExperienceDetailFeature({ experience, onBack }: Experien
   };
 
   return (
-    <section className="min-h-screen bg-black py-16 px-6">
-      <div className="max-w-4xl mx-auto">
+    <section className="pb-16 px-12 bg-black">
+      <div className="max-w-6xl mx-auto">
         {/* Back Button */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-8"
+          className="mb-12 px-4"
         >
           <Button
             variant="ghost"
@@ -51,7 +51,7 @@ export default function ExperienceDetailFeature({ experience, onBack }: Experien
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="mb-8"
+          className="mb-8 px-4"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             {experience.company || experience.position}
@@ -66,6 +66,7 @@ export default function ExperienceDetailFeature({ experience, onBack }: Experien
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
+          className="px-4"
         >
           <Card className="bg-gray-900/50 border border-gray-800">
             <CardBody className="p-8">
