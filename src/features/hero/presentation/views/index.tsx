@@ -3,13 +3,17 @@ import FrequentlyQuestions from "../../../frequently_questions/presentation/view
 import RecentProjects from "../components/RecentProjects";
 import Skills from "../components/Skills";
 
-export default function Hero_Feature() {
+interface HeroFeatureProps {
+  onRecentProjectClick?: (title: string) => void;
+}
+
+export default function Hero_Feature({ onRecentProjectClick }: HeroFeatureProps) {
  
   return (
     <>
      <div>
             <div className="p-5 md:hidden"><ProfileCard /></div>
-            <RecentProjects />
+            <RecentProjects onProjectClick={onRecentProjectClick} />
             <Skills />
             <FrequentlyQuestions />
           </div>

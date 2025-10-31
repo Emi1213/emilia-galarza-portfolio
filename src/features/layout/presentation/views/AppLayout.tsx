@@ -1,6 +1,6 @@
 import FloatingNavbar from "../../../../components/navbar/FloatingNavbar";
 import ProfileCard from "../../../../components/profile_card";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import DynamicContent from "../../../../features/layout/presentation/components/DynamicContent";
 import { Providers } from "../../../../components/providers/ToastProvider";
 
@@ -28,14 +28,14 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
   const maxScroll = 128; 
   const profileTransformY = Math.min(scrollY, maxScroll);
 
-  const handleSectionChange = (sectionId: string) => {
+  const handleSectionChange = useCallback((sectionId: string) => {
     setActiveSection(sectionId);
     
     if (typeof window !== 'undefined') {
       const newUrl = sectionId === 'hero' ? '/' : `/${sectionId}`;
       window.history.pushState({}, '', newUrl);
     }
-  };
+  }, []);
 
   return (
     <Providers>
@@ -60,7 +60,7 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
 
             <div className="w-2/3">
               <div className="pt-40">
-                <DynamicContent activeSection={activeSection} />
+                <DynamicContent activeSection={activeSection} onNavigate={handleSectionChange} />
               </div>
               
             </div>
@@ -68,7 +68,7 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
           <div className="md:hidden">
           
             <div className="pt-24">
-              <DynamicContent activeSection={activeSection} />
+              <DynamicContent activeSection={activeSection} onNavigate={handleSectionChange} />
             </div>
           </div>
         </div>

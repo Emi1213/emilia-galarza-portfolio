@@ -6,6 +6,7 @@ import Experience_Feature from "../../../experience/presentation/views";
 import ExperienceDetailFeature from "../../../experience/presentation/views/detail";
 import type { Experience } from "../../../experience/types/experience.interface";
 import ProjectsPage from "../../../../components/projects/page";
+import type { DetailedProject } from "../../../projects/types/project-detail.interface";
 
 export interface NavItem {
   id: string;
@@ -15,10 +16,12 @@ export interface NavItem {
 
 interface DynamicContentProps {
   activeSection: string;
+  onNavigate?: (sectionId: string) => void;
 }
 
-export default function DynamicContent({ activeSection }: DynamicContentProps) {
+export default function DynamicContent({ activeSection, onNavigate }: DynamicContentProps) {
   const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null);
+  const [pendingProjectTitle, setPendingProjectTitle] = useState<string | null>(null);
 
   const handleExperienceSelect = (experience: Experience) => {
     console.log('🎯 Experience selected:', experience.position);
@@ -33,7 +36,7 @@ export default function DynamicContent({ activeSection }: DynamicContentProps) {
   // Memoizar los componentes para evitar recreaciones
   const Contact = () => <ContactView />;
   const About = () => <AboutMe />;
-  const Projects = () => <ProjectsPage />;
+  const Projects = () => <ProjectsPage initialProjectTitle={pendingProjectTitle ?? undefined} />;
 
   // Memoizar el contenido de Experience para evitar recreaciones
   const experienceContent = useMemo(() => {
@@ -53,13 +56,20 @@ export default function DynamicContent({ activeSection }: DynamicContentProps) {
     {
       id: "hero",
       label: "Hero",
-      component: () => <Hero_Feature />,
+      component: () => (
+        <Hero_Feature
+          onRecentProjectClick={(title) => {
+            setPendingProjectTitle(title);
+            onNavigate?.("projects");
+          }}
+        />
+      ),
     },
     { id: "about", label: "About", component: About },
     { id: "projects", label: "Projects", component: Projects },
     { id: "experience", label: "Experience", component: () => experienceContent },
     { id: "contact", label: "Contact", component: Contact },
-  ], [experienceContent]);
+  ], [experienceContent, pendingProjectTitle]);
 
   const currentItem = navigationItems.find((item) => item.id === activeSection);
 
