@@ -5,6 +5,7 @@ import AboutMe from "../../../../components/about";
 import Experience_Feature from "../../../experience/presentation/views";
 import ExperienceDetailFeature from "../../../experience/presentation/views/detail";
 import type { Experience } from "../../../experience/types/experience.interface";
+import ProjectsPage from "../../../../components/projects/page";
 
 export interface NavItem {
   id: string;
@@ -32,12 +33,7 @@ export default function DynamicContent({ activeSection }: DynamicContentProps) {
   // Memoizar los componentes para evitar recreaciones
   const Contact = () => <ContactView />;
   const About = () => <AboutMe />;
-  const Projects = () => (
-    <div className="p-8 text-center">
-      <h2 className="text-4xl font-bold text-white mb-4">My Projects</h2>
-      <p className="text-gray-400">Projects component coming soon...</p>
-    </div>
-  );
+  const Projects = () => <ProjectsPage />;
 
   // Memoizar el contenido de Experience para evitar recreaciones
   const experienceContent = useMemo(() => {
