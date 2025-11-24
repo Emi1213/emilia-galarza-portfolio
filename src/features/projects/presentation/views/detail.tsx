@@ -3,6 +3,8 @@ import { useRef } from "react";
 import { Card, CardBody } from "@heroui/card";
 import { Chip, Button, Image } from "@heroui/react";
 import { ArrowLeftIcon } from "@heroui/shared-icons";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { TechCard } from "../../../shared/presentation/components/TechCard";
 import type { DetailedProject } from "../../types/project-detail.interface";
 
 interface ProjectDetailFeatureProps {
@@ -74,53 +76,81 @@ export default function ProjectDetailFeature({ project, onBack }: ProjectDetailF
           transition={{ delay: 0.3, duration: 0.6 }}
           className="px-4 mb-10"
         >
-          <Card className="bg-gray-900/50 border border-gray-800">
-            <CardBody className="p-6">
-              <h2 className="text-2xl font-bold text-white mb-4">Technical Stack</h2>
+          <h2 className="text-2xl font-bold text-white mb-6">Technical Stack</h2>
 
-              <div className="space-y-6">
-                {project.technicalStack.frontend?.length ? (
-                  <div>
-                    <h3 className="text-white font-semibold mb-3">Frontend</h3>
-                    <div className="flex flex-wrap gap-3">
-                      {project.technicalStack.frontend.map((t, i) => (
-                        <Chip key={`fe-${i}`} variant="faded" className="text-primary-color text-base px-4 py-2">
-                          {t.name}
-                        </Chip>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-
-                {project.technicalStack.backend?.length ? (
-                  <div>
-                    <h3 className="text-white font-semibold mb-3">Backend</h3>
-                    <div className="flex flex-wrap gap-3">
-                      {project.technicalStack.backend.map((t, i) => (
-                        <Chip key={`be-${i}`} variant="bordered" className="text-gray-300 border-gray-600">
-                          {t.name}
-                        </Chip>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-
-                {project.technicalStack.devOps?.length ? (
-                  <div>
-                    <h3 className="text-white font-semibold mb-3">DevOps</h3>
-                    <div className="flex flex-wrap gap-3">
-                      {project.technicalStack.devOps.map((t, i) => (
-                        <Chip key={`do-${i}`} variant="bordered" className="text-gray-300 border-gray-600">
-                          {t.name}
-                        </Chip>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
+          <div className="space-y-8">
+            {project.technicalStack.frontend?.length ? (
+              <div>
+                <h3 className="text-white font-semibold mb-4 text-lg">Frontend</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {project.technicalStack.frontend.map((t, i) => (
+                    <TechCard 
+                      key={`fe-${i}`} 
+                      title={t.name} 
+                      description={t.description} 
+                      icon={t.icon}
+                    />
+                  ))}
+                </div>
               </div>
-            </CardBody>
-          </Card>
+            ) : null}
+
+            {project.technicalStack.backend?.length ? (
+              <div>
+                <h3 className="text-white font-semibold mb-4 text-lg">Backend</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {project.technicalStack.backend.map((t, i) => (
+                    <TechCard 
+                      key={`be-${i}`} 
+                      title={t.name} 
+                      description={t.description} 
+                      icon={t.icon}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {project.technicalStack.devOps?.length ? (
+              <div>
+                <h3 className="text-white font-semibold mb-4 text-lg">DevOps</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {project.technicalStack.devOps.map((t, i) => (
+                    <TechCard 
+                      key={`do-${i}`} 
+                      title={t.name} 
+                      description={t.description} 
+                      icon={t.icon}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
         </motion.div>
+
+        {/* Collaborators */}
+        {project.collaborators?.length ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.35, duration: 0.6 }}
+            className="px-4 mb-10"
+          >
+            <h2 className="text-2xl font-bold text-white mb-6">Collaborators</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {project.collaborators.map((c, i) => (
+                <TechCard
+                  key={`collab-${i}`}
+                  title={c.name}
+                  description={c.role}
+                  icon={c.github ? FaGithub : (c.linkedin ? FaLinkedin : undefined)}
+                  className="bg-gray-800/30"
+                />
+              ))}
+            </div>
+          </motion.div>
+        ) : null}
 
         {/* Links */}
         {(project.links?.demo || project.links?.github) && (

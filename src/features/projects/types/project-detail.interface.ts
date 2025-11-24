@@ -38,3 +38,21 @@ export interface DetailedProject {
   company?: CompanyInfo;
   links?: AdditionalLinks;
 }
+
+export interface Collaborator {
+  name: string;
+  role: string;
+  github?: string;
+  linkedin?: string;
+}
+
+export interface DetailedProject {
+  id: string;
+  title: string;
+  shortDescription: string;
+  technicalStack: TechnicalStack;
+  visualContent: VisualContent;
+  company?: CompanyInfo;
+  links?: AdditionalLinks;
+  collaborators?: Collaborator[];
+}
