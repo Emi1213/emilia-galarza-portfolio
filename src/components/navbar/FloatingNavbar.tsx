@@ -15,7 +15,6 @@ interface FloatingNavbarProps {
 const FloatingNavbar = ({ activeSection, onSectionChange }: FloatingNavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [mouseY, setMouseY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,21 +22,15 @@ const FloatingNavbar = ({ activeSection, onSectionChange }: FloatingNavbarProps)
       setIsScrolled(scrollPosition > 100);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setMouseY(e.clientY);
-    };
-
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
-  // Show navbar if hovered or mouse is near top (within 80px)
-  const shouldShowNavbar = !isScrolled || isHovered || mouseY < 80;
+  // Show navbar if not scrolled down or if hovered
+  const shouldShowNavbar = !isScrolled || isHovered;
 
   const menuItems = [
     { name: 'Home', href: '#inicio', icon: Home, sectionId: 'hero' },
