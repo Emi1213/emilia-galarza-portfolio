@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Card, CardBody } from "@heroui/card";
 import { Chip, Button } from "@heroui/react";
 import { ArrowLeftIcon } from "@heroui/shared-icons";
@@ -11,6 +11,11 @@ interface ExperienceDetailFeatureProps {
 }
 
 export default function ExperienceDetailFeature({ experience, onBack }: ExperienceDetailFeatureProps) {
+  // Scroll to top when component mounts or experience changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [experience.id]);
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { 

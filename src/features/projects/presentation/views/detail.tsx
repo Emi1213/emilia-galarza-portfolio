@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Card, CardBody } from "@heroui/card";
 import { Chip, Button, Image } from "@heroui/react";
 import { ArrowLeftIcon } from "@heroui/shared-icons";
@@ -16,6 +16,11 @@ interface ProjectDetailFeatureProps {
 export default function ProjectDetailFeature({ project, onBack }: ProjectDetailFeatureProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  // Scroll to top when component mounts or project changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [project.id]);
 
   return (
     <section className="pb-16 px-12 bg-black" ref={ref}>
