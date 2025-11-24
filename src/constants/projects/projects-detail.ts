@@ -24,8 +24,8 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
     visualContent: {
       mainImage: "/images/projects/revo-project.jpg",
       screenshots: [
-        "/images/projects/revo-project.jpg",
-        "/images/projects/taskai-project.jpg",
+        "/images/avatar_profile.jpeg",
+        "/images/default_image.png",
       ],
     },
     links: {

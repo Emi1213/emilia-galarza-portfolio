@@ -5,6 +5,7 @@ import { Chip, Button, Image } from "@heroui/react";
 import { ArrowLeftIcon } from "@heroui/shared-icons";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { TechCard } from "../../../shared/presentation/components/TechCard";
+import { Gallery } from "../../../shared/presentation/components/Gallery";
 import type { DetailedProject } from "../../types/project-detail.interface";
 
 interface ProjectDetailFeatureProps {
@@ -195,16 +196,11 @@ export default function ProjectDetailFeature({ project, onBack }: ProjectDetailF
             transition={{ delay: 0.4, duration: 0.6 }}
             className="px-4"
           >
-            <h2 className="text-2xl font-bold text-white mb-4">Gallery</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {project.visualContent.screenshots.map((src, i) => (
-                <Card key={`shot-${i}`} className="bg-gray-900/50 border border-gray-800 overflow-hidden">
-                  <CardBody className="p-0">
-                    <Image src={src} alt={`${project.title} screenshot ${i + 1}`} className="w-full h-64 object-cover" />
-                  </CardBody>
-                </Card>
-              ))}
-            </div>
+            <h2 className="text-2xl font-bold text-white mb-6">Gallery</h2>
+            <Gallery 
+              images={project.visualContent.screenshots} 
+              projectTitle={project.title}
+            />
           </motion.div>
         ) : null}
       </div>
