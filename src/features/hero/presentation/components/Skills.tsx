@@ -11,6 +11,7 @@ export default function Skills(){
     const skillsPerPage = 6;
     
     const ref = useRef(null);
+    const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
     
     const totalPages = Math.ceil(SKILLS_DATA.length / skillsPerPage);
@@ -21,25 +22,35 @@ export default function Skills(){
     useEffect(() => {
         if (!isAutoPlay || totalPages <= 1 || !isInView) return;
 
-        
-        const startDelay = setTimeout(() => {
-            const interval = setInterval(() => {
-                setDirection(1);
-                setCurrentPage(prev => prev >= totalPages ? 1 : prev + 1);
-            }, 4000);
+        const interval = setInterval(() => {
+            setDirection(1);
+            setCurrentPage(prev => prev >= totalPages ? 1 : prev + 1);
+        }, 4000);
 
-            return () => clearInterval(interval);
-        }, 1000); 
-
-        return () => clearTimeout(startDelay);
+        return () => clearInterval(interval);
     }, [isAutoPlay, totalPages, isInView]);
 
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (resumeTimeoutRef.current) {
+                clearTimeout(resumeTimeoutRef.current);
+            }
+        };
+    }, []);
+
     const handlePageClick = (page: number) => {
+        // Clear any existing resume timeout
+        if (resumeTimeoutRef.current) {
+            clearTimeout(resumeTimeoutRef.current);
+        }
+
         setIsAutoPlay(false);
         setDirection(page > currentPage ? 1 : -1);
         setCurrentPage(page);
         
-        setTimeout(() => {
+        // Resume after 8 seconds if no other interaction happens
+        resumeTimeoutRef.current = setTimeout(() => {
             setIsAutoPlay(true);
         }, 8000);
     };
