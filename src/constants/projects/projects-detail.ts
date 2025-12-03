@@ -4,8 +4,8 @@ import { SiAstro, SiTailwindcss, SiFramer, SiVercel, SiTypescript, SiNextdotjs, 
 
 export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
   {
-    id: "revo",
-    title: "Revo",
+    id: "car_rental",
+    title: "car_rental",
     shortDescription: "A modern SaaS template focused on clean UI and fast performance, featuring responsive sections and smooth animations.",
     technicalStack: {
       frontend: [
@@ -22,10 +22,25 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
       ],
     },
     visualContent: {
-      mainImage: "/images/projects/revo-project.jpg",
+      mainImage: "/images/car_rental/01.png",
       screenshots: [
-        "/images/avatar_profile.jpeg",
-        "/images/default_image.png",
+        "/images/car_rental/02.png",
+        "/images/car_rental/03.png",
+        "/images/car_rental/04.png",
+        "/images/car_rental/05.png",
+        "/images/car_rental/06.png",
+        "/images/car_rental/07.png",
+        "/images/car_rental/08.png",
+        "/images/car_rental/09.png",
+        "/images/car_rental/10.png",
+        "/images/car_rental/11.png",
+        "/images/car_rental/12.png",
+        "/images/car_rental/13.png",
+        "/images/car_rental/14.png",
+        "/images/car_rental/15.png",
+        "/images/car_rental/16.png",
+        "/images/car_rental/17.png",
+        "/images/car_rental/18.png",
       ],
     },
     links: {
@@ -38,8 +53,8 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
     ],
   },
   {
-    id: "najmai",
-    title: "NajmAI",
+    id: "ecua_ticket",
+    title: "ecua_ticket",
     shortDescription: "AI landing template with accent animations and a strong visual identity, optimized for conversions.",
     technicalStack: {
       frontend: [
@@ -50,10 +65,17 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
       ],
     },
     visualContent: {
-      mainImage: "/images/projects/najmai-project.jpg",
+      mainImage: "/images/ecua_ticket/b1.png",
       screenshots: [
-        "/images/projects/najmai-project.jpg",
-        "/images/projects/stabraq-project.jpg",
+        "/images/ecua_ticket/b10.png",
+        "/images/ecua_ticket/b2.png",
+        "/images/ecua_ticket/b3.png",
+        "/images/ecua_ticket/b4.png",
+        "/images/ecua_ticket/b5.png",
+        "/images/ecua_ticket/b6.png",
+        "/images/ecua_ticket/b7.png",
+        "/images/ecua_ticket/b8.png",
+        "/images/ecua_ticket/b9.png",
       ],
     },
     links: {
@@ -65,8 +87,8 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
     ],
   },
   {
-    id: "stabraq",
-    title: "Stabraq",
+    id: "savings_goals",
+    title: "savings_goals",
     shortDescription: "Elegant portfolio template with grid gallery and smooth transitions.",
     technicalStack: {
       frontend: [
@@ -77,10 +99,27 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
       ],
     },
     visualContent: {
-      mainImage: "/images/projects/stabraq-project.jpg",
+      mainImage: "/images/savings_goals/dashboard1.jpg",
       screenshots: [
-        "/images/projects/stabraq-project.jpg",
-        "/images/projects/revo-project.jpg",
+        "/images/savings_goals/Login.jpg",
+        "/images/savings_goals/Retiros.jpg",
+        "/images/savings_goals/chatbot_general_0.jpg",
+        "/images/savings_goals/chatbot_general_1.jpg",
+        "/images/savings_goals/chatbot_general_2.jpg",
+        "/images/savings_goals/chatbot_general_3.jpg",
+        "/images/savings_goals/chatbot_general_4.jpg",
+        "/images/savings_goals/chatbot_meta_especifica.jpg",
+        "/images/savings_goals/chatbot_meta_especifica_pregunta.jpg",
+        "/images/savings_goals/contribuciones.jpg",
+        "/images/savings_goals/dasboard_scroll.jpg",
+        "/images/savings_goals/dashboard2.jpg",
+        "/images/savings_goals/dashboard3.jpg",
+        "/images/savings_goals/flujo_general.jpg",
+        "/images/savings_goals/metas_ahorro.jpg",
+        "/images/savings_goals/metas_ahorro_detail.jpg",
+        "/images/savings_goals/metas_ahorro_progreso.jpg",
+        "/images/savings_goals/recordatorio_email.jpg",
+        "/images/savings_goals/register.jpg",
       ],
     },
     links: {
@@ -93,8 +132,8 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
     ],
   },
   {
-    id: "taskai",
-    title: "TaskAI",
+    id: "website",
+    title: "website",
     shortDescription: "Task management concept with AI assistance and minimal UX.",
     technicalStack: {
       frontend: [
@@ -104,10 +143,12 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
       ],
     },
     visualContent: {
-      mainImage: "/images/projects/taskai-project.jpg",
+      mainImage: "/images/website/w1.png",
       screenshots: [
-        "/images/projects/taskai-project.jpg",
-        "/images/projects/najmai-project.jpg",
+        "/images/website/w3.png",
+        "/images/website/w4.png",
+        "/images/website/w5.png",
+        "/images/website/w7.png",
       ],
     },
     links: {

@@ -1,6 +1,6 @@
 import { RECENT_PROJECTS_DATA } from "../../../../constants/hero/recent_projects";
 import { Card, CardBody } from "@heroui/card";
-import { Image } from "@heroui/react";
+
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import type { recent_projects } from "../../../hero/types/recent_projects.interface";
@@ -52,12 +52,12 @@ export default function RecentProjects({ data, onProjectClick }: RecentProjectsP
                     animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                     transition={{ delay: isInView ? 0.5 + (index * 0.1) : 0, duration: 0.5 }}
                   >
-                    <Image
+                    <img
                       src={project.imageUrl}
                       alt={project.title}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
                   </motion.div>
               
                   <motion.div 

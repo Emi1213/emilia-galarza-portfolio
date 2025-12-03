@@ -2,28 +2,24 @@ import type { recent_projects } from "../../features/hero/types/recent_projects.
 
 export const RECENT_PROJECTS_DATA: recent_projects[] = [
   {
-    title: "Revo",
+    title: "car_rental",
     description: "SaaS Framer Template",
-    imageUrl: "/images/projects/revo-project.jpg"
+    imageUrl: "/images/car_rental/0.png"
   },
   {
-    title: "NajmAI",
+    title: "ecua_ticket",
     description: "Modern Framer Template",
-    imageUrl: "/images/projects/najmai-project.jpg"
+    imageUrl: "/images/ecua_ticket/b0.png"
   },
   {
-    title: "Stabraq",
+    title: "savings_goals",
     description: "Portfolio Framer Template",
-    imageUrl: "/images/projects/stabraq-project.jpg"
+    imageUrl: "/images/savings_goals/0s.png"
   },
   {
-    title: "TaskAI",
+    title: "website",
     description: "SaaS Framer Template",
-    imageUrl: "/images/projects/taskai-project.jpg"
+    imageUrl: "/images/website/w0.png"
   },
-  {
-    title: "Revo",
-    description: "SaaS Framer Template",
-    imageUrl: "/images/projects/revo-project.jpg"
-  }
+
 ];
