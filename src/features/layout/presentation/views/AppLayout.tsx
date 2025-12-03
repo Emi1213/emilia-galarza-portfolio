@@ -54,7 +54,7 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
                   transform: `translateY(-${profileTransformY}px)`,
                 }}
               >
-                <ProfileCard />
+                <ProfileCard onNavigate={handleSectionChange} />
               </div>
             </div>
 

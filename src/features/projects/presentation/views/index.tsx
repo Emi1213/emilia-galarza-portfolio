@@ -7,9 +7,10 @@ import ProfileCard from "../../../../components/profile_card";
 
 interface ProjectsPageFeatureProps {
   initialProjectId?: string;
+  onNavigate?: (section: string) => void;
 }
 
-export default function ProjectsPageFeature({ initialProjectId }: ProjectsPageFeatureProps) {
+export default function ProjectsPageFeature({ initialProjectId, onNavigate }: ProjectsPageFeatureProps) {
   const [selectedProject, setSelectedProject] = useState<DetailedProject | null>(null);
 
   const handleProjectClick = (id: string) => {
@@ -36,7 +37,7 @@ export default function ProjectsPageFeature({ initialProjectId }: ProjectsPageFe
     <div>
       {/* Match Hero's mobile spacing and profile card */}
       <div className="p-5 md:hidden">
-        <ProfileCard />
+        <ProfileCard onNavigate={onNavigate} />
       </div>
       {content}
     </div>

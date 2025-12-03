@@ -5,7 +5,11 @@ import { Image } from "@heroui/react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-export default function Profile_Card() {
+interface ProfileCardProps {
+  onNavigate?: (section: string) => void;
+}
+
+export default function Profile_Card({ onNavigate }: ProfileCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -118,6 +122,7 @@ export default function Profile_Card() {
           <Button 
             color="default" 
             className="font-semibold py-3 px-8 bg-primary_custom-400!"
+            onPress={() => onNavigate?.('contact')}
           >
             Let's Talk
           </Button>

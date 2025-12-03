@@ -1,5 +1,9 @@
 import Profile_Card from "../../features/profile_card/presentation/views";
 
-export default function ProfileCard() {
-    return Profile_Card();
+interface ProfileCardProps {
+    onNavigate?: (section: string) => void;
+}
+
+export default function ProfileCard({ onNavigate }: ProfileCardProps) {
+    return <Profile_Card onNavigate={onNavigate} />;
 }

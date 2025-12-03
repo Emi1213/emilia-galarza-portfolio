@@ -5,14 +5,15 @@ import Skills from "../components/Skills";
 
 interface HeroFeatureProps {
   onRecentProjectClick?: (id: string) => void;
+  onNavigate?: (section: string) => void;
 }
 
-export default function Hero_Feature({ onRecentProjectClick }: HeroFeatureProps) {
+export default function Hero_Feature({ onRecentProjectClick, onNavigate }: HeroFeatureProps) {
  
   return (
     <>
      <div>
-            <div className="p-5 md:hidden"><ProfileCard /></div>
+            <div className="p-5 md:hidden"><ProfileCard onNavigate={onNavigate} /></div>
             <RecentProjects onProjectClick={onRecentProjectClick} />
             <Skills />
             <FrequentlyQuestions />

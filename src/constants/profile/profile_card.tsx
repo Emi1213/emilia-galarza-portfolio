@@ -3,18 +3,18 @@ import { SiGithub, SiLinkedin } from "react-icons/si";
 export const PROFILE_CARD_DATA: profile_card = 
   {
     name: "Emilia Galarza",
-    bio: "Aspiring Full Stack Developer | Passionate about crafting seamless web experiences | Eager to learn and grow in the tech world",
+    bio: "Software Developer | Full Stack Developer | Building Scalable Web Experiences",
     avatar: "/images/avatar_profile.jpeg",
     location: "Ambato, Ecuador",
     socialLinks: [
       {
         platform: "GitHub",
-        url: "https://github.com/emilia-galarza",
+        url: "https://github.com/Emi1213",
         icon: <SiGithub />,
     },
     {
       platform: "LinkedIn",
-      url: "https://linkedin.com/in/emilia-galarza",
+      url: "https://www.linkedin.com/in/emilia-galarza-b6b13a226/",
       icon: <SiLinkedin />,
     },
   ]

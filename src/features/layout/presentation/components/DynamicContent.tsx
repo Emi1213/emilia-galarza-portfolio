@@ -36,7 +36,7 @@ export default function DynamicContent({ activeSection, onNavigate }: DynamicCon
   // Memoizar los componentes para evitar recreaciones
   const Contact = () => <ContactView />;
   const About = () => <AboutMe />;
-  const Projects = () => <ProjectsPage initialProjectId={pendingProjectId ?? undefined} />;
+  const Projects = () => <ProjectsPage initialProjectId={pendingProjectId ?? undefined} onNavigate={onNavigate} />;
 
   // Memoizar el contenido de Experience para evitar recreaciones
   const experienceContent = useMemo(() => {
@@ -62,6 +62,7 @@ export default function DynamicContent({ activeSection, onNavigate }: DynamicCon
             setPendingProjectId(id);
             onNavigate?.("projects");
           }}
+          onNavigate={onNavigate}
         />
       ),
     },
