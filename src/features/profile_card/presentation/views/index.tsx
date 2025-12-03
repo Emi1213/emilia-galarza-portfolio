@@ -4,6 +4,7 @@ import { Button } from "@heroui/button";
 import { Image } from "@heroui/react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { FaDownload } from "react-icons/fa";
 
 interface ProfileCardProps {
   onNavigate?: (section: string) => void;
@@ -118,13 +119,25 @@ export default function Profile_Card({ onNavigate }: ProfileCardProps) {
           initial={{ y: 30, opacity: 0, scale: 0.8 }}
           animate={isInView ? { y: 0, opacity: 1, scale: 1 } : { y: 30, opacity: 0, scale: 0.8 }}
           transition={{ delay: 1.2, duration: 0.5, type: "spring" }}
+          className="flex flex-col gap-3 w-full"
         >
           <Button 
             color="default" 
-            className="font-semibold py-3 px-8 bg-primary_custom-400!"
+            className="font-semibold py-3 w-full bg-primary_custom-400!"
             onPress={() => onNavigate?.('contact')}
           >
             Let's Talk
+          </Button>
+
+          <Button
+            as="a"
+            href="/Galarza_Emilia_CV.pdf"
+            download="Galarza_Emilia_CV.pdf"
+            variant="bordered"
+            className="font-semibold py-3 w-full border-gray-700 text-gray-300 hover:text-white hover:border-gray-500"
+            startContent={<FaDownload className="text-sm" />}
+          >
+            Download CV
           </Button>
         </motion.div>
 
