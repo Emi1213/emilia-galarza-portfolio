@@ -4,7 +4,7 @@ import RecentProjects from "../components/RecentProjects";
 import Skills from "../components/Skills";
 
 interface HeroFeatureProps {
-  onRecentProjectClick?: (title: string) => void;
+  onRecentProjectClick?: (id: string) => void;
 }
 
 export default function Hero_Feature({ onRecentProjectClick }: HeroFeatureProps) {

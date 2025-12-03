@@ -1,24 +1,26 @@
 import type { DetailedProject } from "../../features/projects/types/project-detail.interface";
-import { FaReact, FaNodeJs, FaGithub, FaLinkedin } from "react-icons/fa";
-import { SiAstro, SiTailwindcss, SiFramer, SiVercel, SiTypescript, SiNextdotjs, SiSupabase, SiPostgresql, SiDocker, SiKubernetes, SiAmazon } from "react-icons/si";
+import { FaReact, FaNodeJs, FaGithub, FaLinkedin, FaJava } from "react-icons/fa";
+import { SiAstro, SiTailwindcss, SiFramer, SiVercel, SiTypescript, SiNextdotjs, SiSupabase, SiPostgresql, SiDocker, SiKubernetes, SiAmazon, SiVuedotjs, SiVite, SiSpringboot, SiJavascript } from "react-icons/si";
 
 export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
   {
     id: "car_rental",
-    title: "car_rental",
-    shortDescription: "A modern SaaS template focused on clean UI and fast performance, featuring responsive sections and smooth animations.",
+    title: "Car Rental Management",
+    shortDescription: "A full-stack vehicle rental management system featuring role-based authentication, fleet management, and booking workflows. Built with Vue 3 and Spring Boot, it offers a complete solution for managing vehicle rental operations.",
     technicalStack: {
       frontend: [
-        { name: "React", description: "Component-driven UI", icon: FaReact },
-        { name: "Astro", description: "Islands architecture for performance", icon: SiAstro },
-        { name: "Tailwind CSS", description: "Utility-first styling", icon: SiTailwindcss },
-        { name: "Framer Motion", description: "Scroll and reveal animations", icon: SiFramer },
+        { name: "Vue 3", description: "Progressive JavaScript framework for building reactive user interfaces.", icon: SiVuedotjs },
+        { name: "Vite", description: "Frontend build tool that provides fast development and optimized builds.", icon: SiVite },
+        { name: "JavaScript", description: "Used for client-side logic and interactivity within the application.", icon: SiJavascript },
+        { name: "Tailwind CSS", description: "Utility-first CSS framework for building custom designs efficiently.", icon: SiTailwindcss },
       ],
       backend: [
-        { name: "Node.js", description: "Basic API mocks for demo", icon: FaNodeJs },
+        { name: "Java", description: "Primary programming language for backend services and application logic.", icon: FaJava },
+        { name: "Spring Boot", description: "Framework for building scalable and production-ready REST APIs.", icon: SiSpringboot },
+        { name: "PostgreSQL", description: "Relational database for managing vehicle, user, and transaction data.", icon: SiPostgresql },
       ],
       devOps: [
-        { name: "Vercel", description: "Preview deployments", icon: SiVercel },
+        { name: "Docker", description: "Containerization tool used to manage and deploy the development environment.", icon: SiDocker },
       ],
     },
     visualContent: {

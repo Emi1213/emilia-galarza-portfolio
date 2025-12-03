@@ -21,7 +21,7 @@ interface DynamicContentProps {
 
 export default function DynamicContent({ activeSection, onNavigate }: DynamicContentProps) {
   const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null);
-  const [pendingProjectTitle, setPendingProjectTitle] = useState<string | null>(null);
+  const [pendingProjectId, setPendingProjectId] = useState<string | null>(null);
 
   const handleExperienceSelect = (experience: Experience) => {
     console.log('🎯 Experience selected:', experience.position);
@@ -36,7 +36,7 @@ export default function DynamicContent({ activeSection, onNavigate }: DynamicCon
   // Memoizar los componentes para evitar recreaciones
   const Contact = () => <ContactView />;
   const About = () => <AboutMe />;
-  const Projects = () => <ProjectsPage initialProjectTitle={pendingProjectTitle ?? undefined} />;
+  const Projects = () => <ProjectsPage initialProjectId={pendingProjectId ?? undefined} />;
 
   // Memoizar el contenido de Experience para evitar recreaciones
   const experienceContent = useMemo(() => {
@@ -58,8 +58,8 @@ export default function DynamicContent({ activeSection, onNavigate }: DynamicCon
       label: "Hero",
       component: () => (
         <Hero_Feature
-          onRecentProjectClick={(title) => {
-            setPendingProjectTitle(title);
+          onRecentProjectClick={(id) => {
+            setPendingProjectId(id);
             onNavigate?.("projects");
           }}
         />
@@ -69,7 +69,7 @@ export default function DynamicContent({ activeSection, onNavigate }: DynamicCon
     { id: "projects", label: "Projects", component: Projects },
     { id: "experience", label: "Experience", component: () => experienceContent },
     { id: "contact", label: "Contact", component: Contact },
-  ], [experienceContent, pendingProjectTitle]);
+  ], [experienceContent, pendingProjectId]);
 
   const currentItem = navigationItems.find((item) => item.id === activeSection);
 

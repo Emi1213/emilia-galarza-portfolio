@@ -1,13 +1,13 @@
 import ProjectsPageFeature from "../../features/projects/presentation/views";
 
 interface ProjectsPageProps {
-  initialProjectTitle?: string;
+  initialProjectId?: string;
 }
 
-export default function ProjectsPage({ initialProjectTitle }: ProjectsPageProps) {
+export default function ProjectsPage({ initialProjectId }: ProjectsPageProps) {
   return (
     <div>
-      <ProjectsPageFeature initialProjectTitle={initialProjectTitle} />
+      <ProjectsPageFeature initialProjectId={initialProjectId} />
     </div>
   );
 }

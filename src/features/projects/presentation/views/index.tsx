@@ -6,24 +6,24 @@ import { PROJECTS_DETAIL_DATA } from "../../../../constants/projects/projects-de
 import ProfileCard from "../../../../components/profile_card";
 
 interface ProjectsPageFeatureProps {
-  initialProjectTitle?: string;
+  initialProjectId?: string;
 }
 
-export default function ProjectsPageFeature({ initialProjectTitle }: ProjectsPageFeatureProps) {
+export default function ProjectsPageFeature({ initialProjectId }: ProjectsPageFeatureProps) {
   const [selectedProject, setSelectedProject] = useState<DetailedProject | null>(null);
 
-  const handleProjectClick = (title: string) => {
-    const project = PROJECTS_DETAIL_DATA.find(p => p.title.toLowerCase() === title.toLowerCase());
+  const handleProjectClick = (id: string) => {
+    const project = PROJECTS_DETAIL_DATA.find(p => p.id === id);
     if (project) setSelectedProject(project);
   };
 
   const handleBack = () => setSelectedProject(null);
 
   useEffect(() => {
-    if (initialProjectTitle && !selectedProject) {
-      handleProjectClick(initialProjectTitle);
+    if (initialProjectId && !selectedProject) {
+      handleProjectClick(initialProjectId);
     }
-  }, [initialProjectTitle]);
+  }, [initialProjectId]);
 
   const content = useMemo(() => {
     if (selectedProject) {

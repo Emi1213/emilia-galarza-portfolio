@@ -7,7 +7,7 @@ import type { recent_projects } from "../../../hero/types/recent_projects.interf
 
 interface RecentProjectsProps {
   data?: recent_projects[];
-  onProjectClick?: (title: string) => void;
+  onProjectClick?: (id: string) => void;
 }
 
 export default function RecentProjects({ data, onProjectClick }: RecentProjectsProps) {
@@ -42,7 +42,7 @@ export default function RecentProjects({ data, onProjectClick }: RecentProjectsP
             >
               <Card 
                 isPressable={!!onProjectClick}
-                onPress={() => onProjectClick && onProjectClick(project.title)}
+                onPress={() => onProjectClick && onProjectClick(project.id)}
                 className={`w-full transition-all duration-300 group ${onProjectClick ? 'cursor-pointer hover:brightness-110 hover:shadow-lg' : ''}`}
               >
                 <CardBody className="p-0">
