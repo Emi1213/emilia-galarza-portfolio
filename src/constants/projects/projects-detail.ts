@@ -1,6 +1,6 @@
 import type { DetailedProject } from "../../features/projects/types/project-detail.interface";
 import { FaReact, FaNodeJs, FaGithub, FaLinkedin, FaJava } from "react-icons/fa";
-import { SiAstro, SiTailwindcss, SiFramer, SiVercel, SiTypescript, SiNextdotjs, SiSupabase, SiPostgresql, SiDocker, SiKubernetes, SiAmazon, SiVuedotjs, SiVite, SiSpringboot, SiJavascript } from "react-icons/si";
+import { SiAstro, SiTailwindcss, SiFramer, SiVercel, SiTypescript, SiNextdotjs, SiSupabase, SiPostgresql, SiDocker, SiKubernetes, SiAmazon, SiVuedotjs, SiVite, SiSpringboot, SiJavascript, SiNestjs, SiDotnet } from "react-icons/si";
 
 export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
   {
@@ -90,14 +90,17 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
   },
   {
     id: "savings_goals",
-    title: "savings_goals",
-    shortDescription: "Elegant portfolio template with grid gallery and smooth transitions.",
+    title: "Savings Goals App",
+    shortDescription: "A personal financial management platform designed to help users track and achieve their savings goals. Featuring an AI-powered chat for personalized financial advice and habit recommendations, the app optimizes the user experience for over 1,000 active users through a clear and usable interface.",
     technicalStack: {
       frontend: [
-        { name: "React", description: "UI components", icon: FaReact },
-        { name: "Astro", description: "Content-focused structure", icon: SiAstro },
-        { name: "Tailwind CSS", description: "Design system", icon: SiTailwindcss },
-        { name: "Framer Motion", description: "Animations", icon: SiFramer },
+        { name: "Next.js", description: "React framework for building fast, server-rendered applications.", icon: SiNextdotjs },
+        { name: "TypeScript", description: "Ensures type safety and better developer experience.", icon: SiTypescript },
+        { name: "Tailwind CSS", description: "Utility-first framework for rapid and responsive UI design.", icon: SiTailwindcss },
+      ],
+      backend: [
+        { name: "NestJS", description: " scalable Node.js framework for building efficient server-side applications.", icon: SiNestjs },
+        { name: ".NET", description: "High-performance framework for robust backend services.", icon: SiDotnet },
       ],
     },
     visualContent: {
@@ -125,8 +128,8 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
       ],
     },
     links: {
-      demo: "https://example.com/stabraq",
-      github: "https://github.com/example/stabraq",
+      demo: "https://example.com/savings-goals",
+      github: "https://github.com/example/savings-goals",
     },
     collaborators: [
       { name: "Chris Lee", role: "Backend Developer", github: "https://github.com/chrisl" },

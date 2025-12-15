@@ -11,6 +11,7 @@ interface AppLayoutProps {
 export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState(initialSection);
+  const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,8 +29,9 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
   const maxScroll = 128; 
   const profileTransformY = Math.min(scrollY, maxScroll);
 
-  const handleSectionChange = useCallback((sectionId: string) => {
+  const handleSectionChange = useCallback((sectionId: string, projectId?: string | null) => {
     setActiveSection(sectionId);
+    setActiveProjectId(projectId ?? null);
     
     if (typeof window !== 'undefined') {
       const newUrl = sectionId === 'hero' ? '/' : `/${sectionId}`;
@@ -42,7 +44,7 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
         <div id="container" className="bg-black">
           <FloatingNavbar
             activeSection={activeSection}
-            onSectionChange={handleSectionChange}
+            onSectionChange={(section) => handleSectionChange(section)}
         />
         <div className="max-w-6xl mx-auto">
           <div className="hidden md:flex">
@@ -54,13 +56,17 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
                   transform: `translateY(-${profileTransformY}px)`,
                 }}
               >
-                <ProfileCard onNavigate={handleSectionChange} />
+                <ProfileCard onNavigate={(section) => handleSectionChange(section)} />
               </div>
             </div>
 
             <div className="w-2/3">
               <div className="pt-40">
-                <DynamicContent activeSection={activeSection} onNavigate={handleSectionChange} />
+                <DynamicContent 
+                  activeSection={activeSection} 
+                  activeProjectId={activeProjectId}
+                  onNavigate={handleSectionChange} 
+                />
               </div>
               
             </div>
@@ -68,7 +74,13 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
           <div className="md:hidden">
           
             <div className="pt-24">
-              <DynamicContent activeSection={activeSection} onNavigate={handleSectionChange} />
+            <div className="pt-24">
+              <DynamicContent 
+                activeSection={activeSection} 
+                activeProjectId={activeProjectId}
+                onNavigate={handleSectionChange} 
+              />
+            </div>
             </div>
           </div>
         </div>

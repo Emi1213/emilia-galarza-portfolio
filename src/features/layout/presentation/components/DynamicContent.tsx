@@ -16,12 +16,12 @@ export interface NavItem {
 
 interface DynamicContentProps {
   activeSection: string;
-  onNavigate?: (sectionId: string) => void;
+  activeProjectId?: string | null;
+  onNavigate?: (sectionId: string, projectId?: string | null) => void;
 }
 
-export default function DynamicContent({ activeSection, onNavigate }: DynamicContentProps) {
+export default function DynamicContent({ activeSection, activeProjectId, onNavigate }: DynamicContentProps) {
   const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null);
-  const [pendingProjectId, setPendingProjectId] = useState<string | null>(null);
 
   const handleExperienceSelect = (experience: Experience) => {
     console.log('🎯 Experience selected:', experience.position);
@@ -36,7 +36,7 @@ export default function DynamicContent({ activeSection, onNavigate }: DynamicCon
   // Memoizar los componentes para evitar recreaciones
   const Contact = () => <ContactView />;
   const About = () => <AboutMe />;
-  const Projects = () => <ProjectsPage initialProjectId={pendingProjectId ?? undefined} onNavigate={onNavigate} />;
+  const Projects = () => <ProjectsPage initialProjectId={activeProjectId ?? undefined} onNavigate={onNavigate} />;
 
   // Memoizar el contenido de Experience para evitar recreaciones
   const experienceContent = useMemo(() => {
@@ -59,8 +59,7 @@ export default function DynamicContent({ activeSection, onNavigate }: DynamicCon
       component: () => (
         <Hero_Feature
           onRecentProjectClick={(id) => {
-            setPendingProjectId(id);
-            onNavigate?.("projects");
+            onNavigate?.("projects", id);
           }}
           onNavigate={onNavigate}
         />
@@ -70,7 +69,7 @@ export default function DynamicContent({ activeSection, onNavigate }: DynamicCon
     { id: "projects", label: "Projects", component: Projects },
     { id: "experience", label: "Experience", component: () => experienceContent },
     { id: "contact", label: "Contact", component: Contact },
-  ], [experienceContent, pendingProjectId]);
+  ], [experienceContent, activeProjectId]);
 
   const currentItem = navigationItems.find((item) => item.id === activeSection);
 

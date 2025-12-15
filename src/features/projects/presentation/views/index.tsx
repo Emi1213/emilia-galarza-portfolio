@@ -21,8 +21,10 @@ export default function ProjectsPageFeature({ initialProjectId, onNavigate }: Pr
   const handleBack = () => setSelectedProject(null);
 
   useEffect(() => {
-    if (initialProjectId && !selectedProject) {
+    if (initialProjectId) {
       handleProjectClick(initialProjectId);
+    } else {
+      setSelectedProject(null);
     }
   }, [initialProjectId]);
 

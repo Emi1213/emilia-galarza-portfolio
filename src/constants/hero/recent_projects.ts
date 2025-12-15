@@ -15,8 +15,8 @@ export const RECENT_PROJECTS_DATA: recent_projects[] = [
   },
   {
     id: "savings_goals",
-    title: "Savings Goals",
-    description: "Portfolio Framer Template",
+    title: "Savings Goals App",
+    description: "Financial Management Platform",
     imageUrl: "/images/savings_goals/0s.png"
   },
   {
