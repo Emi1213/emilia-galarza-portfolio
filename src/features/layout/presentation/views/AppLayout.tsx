@@ -26,10 +26,19 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
     setActiveSection(initialSection);
   }, [initialSection]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [activeSection, activeProjectId]);
+
   const maxScroll = 128; 
   const profileTransformY = Math.min(scrollY, maxScroll);
 
   const handleSectionChange = useCallback((sectionId: string, projectId?: string | null) => {
+    // If we are already on the section, scroll to top manually since useEffect won't trigger
+    if (sectionId === activeSection && projectId === activeProjectId) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
     setActiveSection(sectionId);
     setActiveProjectId(projectId ?? null);
     
@@ -37,7 +46,7 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
       const newUrl = sectionId === 'hero' ? '/' : `/${sectionId}`;
       window.history.pushState({}, '', newUrl);
     }
-  }, []);
+  }, [activeSection, activeProjectId]);
 
   return (
     <Providers>
@@ -72,15 +81,12 @@ export default function AppLayout({ initialSection = "hero" }: AppLayoutProps) {
             </div>
           </div>
           <div className="md:hidden">
-          
-            <div className="pt-24">
             <div className="pt-24">
               <DynamicContent 
                 activeSection={activeSection} 
                 activeProjectId={activeProjectId}
                 onNavigate={handleSectionChange} 
               />
-            </div>
             </div>
           </div>
         </div>
