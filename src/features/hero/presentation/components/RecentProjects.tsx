@@ -39,13 +39,14 @@ export default function RecentProjects({ data, onProjectClick }: RecentProjectsP
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: isInView ? 0.4 + (index * 0.1) : 0, duration: 0.6 }}
+              className="h-full"
             >
               <Card 
                 isPressable={!!onProjectClick}
                 onPress={() => onProjectClick && onProjectClick(project.id)}
-                className={`w-full transition-all duration-300 group ${onProjectClick ? 'cursor-pointer hover:brightness-110 hover:shadow-lg' : ''}`}
+                className={`w-full h-full transition-all duration-300 group ${onProjectClick ? 'cursor-pointer hover:brightness-110 hover:shadow-lg' : ''}`}
               >
-                <CardBody className="p-0">
+                <CardBody className="p-0 h-full flex flex-col">
                   <motion.div 
                     className="relative overflow-hidden rounded-t-lg h-64"
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -61,7 +62,7 @@ export default function RecentProjects({ data, onProjectClick }: RecentProjectsP
                   </motion.div>
               
                   <motion.div 
-                    className="p-6 min-h-28"
+                    className="p-6 min-h-28 flex-grow"
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                     transition={{ delay: isInView ? 0.6 + (index * 0.1) : 0, duration: 0.5 }}
