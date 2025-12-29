@@ -7,14 +7,14 @@ export const HERO_QUESTIONS: Question[] = [
   },
   {
     question: "Can you handle complex full-stack applications?",
-    answer: "Yes, I have built robust platforms like the 'Car Rental Management System' and 'Savings Goals App', handling everything from secure authentication and databases (PostgreSQL) to responsive frontends."
+    answer: "Yes, I have experience building robust platforms handling everything from secure authentication and complex databases to responsive frontends, ensuring scalability and performance."
   },
   {
     question: "Do you have experience working in teams?",
-    answer: "Absolutely. I have collaborated with diverse teams on projects like 'Ecua Ticket App' and the 'CodeCrafters Corporate Website', using Git and Agile methodologies to deliver high-quality software."
+    answer: "Absolutely. I have collaborated with diverse multidisciplinary teams using Git and Agile methodologies to deliver high-quality software, prioritizing effective communication."
   },
   {
     question: "What is your approach to software development?",
-    answer: "I focus on Clean Architecture and user-centric design. Whether it's optimizing booking workflows or creating AI-powered financial assistants, I prioritize scalability, performance, and an intuitive UX."
+    answer: "I focus on Clean Architecture and user-centric design. Whether it's optimizing complex workflows or integrating intelligent features, I prioritize scalability, performance, and an intuitive UX."
   },
 ];
