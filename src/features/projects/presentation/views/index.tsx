@@ -37,10 +37,7 @@ export default function ProjectsPageFeature({ initialProjectId, onNavigate }: Pr
 
   return (
     <div>
-      {/* Match Hero's mobile spacing and profile card */}
-      <div className="p-5 md:hidden">
-        <ProfileCard onNavigate={onNavigate} />
-      </div>
+
       {content}
     </div>
   );
