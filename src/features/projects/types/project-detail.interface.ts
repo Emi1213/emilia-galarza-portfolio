@@ -29,15 +29,6 @@ export interface CompanyInfo {
 }
 
 
-export interface DetailedProject {
-  id: string;
-  title: string;
-  shortDescription: string;
-  technicalStack: TechnicalStack;
-  visualContent: VisualContent;
-  company?: CompanyInfo;
-  links?: AdditionalLinks;
-}
 
 export interface Collaborator {
   name: string;
@@ -50,6 +41,9 @@ export interface DetailedProject {
   id: string;
   title: string;
   shortDescription: string;
+  context?: string;
+  objective?: string;
+  highlights?: string[];
   technicalStack: TechnicalStack;
   visualContent: VisualContent;
   company?: CompanyInfo;

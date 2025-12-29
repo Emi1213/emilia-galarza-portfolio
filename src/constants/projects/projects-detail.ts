@@ -5,8 +5,17 @@ import { SiAstro, SiTailwindcss, SiFramer, SiVercel, SiTypescript, SiNextdotjs, 
 export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
   {
     id: "car_rental",
-    title: "Car Rental Management",
+    title: "Car Rental Management System",
     shortDescription: "A full-stack vehicle rental management system featuring role-based authentication, fleet management, and booking workflows. Built with Vue 3 and Spring Boot, it offers a complete solution for managing vehicle rental operations.",
+    context: "Developed as a complete solution to manage vehicle rental operations, this project showcases full-stack capabilities by integrating a Vue.js frontend with a Spring Boot backend API, offering practical features for customers and administrators.",
+    objective: "To build a functional and scalable platform that enables users to browse vehicles, make reservations, and manage car rental workflows through an intuitive web interface and reliable backend infrastructure.",
+    highlights: [
+      "Role-based authentication for customers, agents, and admins.",
+      "Fleet management, booking workflows, and payment handling.",
+      "Modern frontend architecture using Vue 3 and Vite.",
+      "REST API with Spring Boot, PostgreSQL, and Dockerized development setup.",
+      "Automated testing using Cypress and Vitest.",
+    ],
     technicalStack: {
       frontend: [
         { name: "Vue 3", description: "Progressive JavaScript framework for building reactive user interfaces.", icon: SiVuedotjs },
@@ -45,25 +54,29 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
         "/images/car_rental/18.png",
       ],
     },
-    links: {
-      demo: "https://example.com/revo",
-      github: "https://github.com/example/revo",
-    },
-    collaborators: [
-      { name: "Alex Johnson", role: "Frontend Developer", github: "https://github.com/alexj" },
-      { name: "Maria Garcia", role: "UI/UX Designer", linkedin: "https://linkedin.com/in/mariag" },
-    ],
+
+    collaborators: [],
   },
   {
     id: "ecua_ticket",
-    title: "ecua_ticket",
-    shortDescription: "AI landing template with accent animations and a strong visual identity, optimized for conversions.",
+    title: "Ecua Ticket App",
+    shortDescription: "Una aplicación web moderna para la gestión de tickets desarrollada con Next.js 15, TypeScript y HeroUI.",
+    context: "Ecua Ticket App es una aplicación de buses web moderna para la gestión de tickets que utiliza una arquitectura limpia y escalable. La aplicación está construida con Next.js 15, TypeScript y HeroUI, proporcionando una experiencia de usuario moderna y responsive.",
+    objective: "Gestionar eficientemente la venta y administración de tickets de autobús mediante una plataforma web robusta, escalable y fácil de usar.",
+    highlights: [
+      "Arquitectura limpia (Clean Architecture) y escalable.",
+      "Interfaz de usuario moderna y responsive con HeroUI y Tailwind CSS.",
+      "Desarrollo optimizado con Next.js 15 y React 19.",
+      "Sistema de autenticación y gestión de usuarios.",
+      "Componentes dinámicos y animaciones con Framer Motion.",
+    ],
     technicalStack: {
       frontend: [
-        { name: "React", description: "SPA-like interactions", icon: FaReact },
-        { name: "Astro", description: "SSG with islands", icon: SiAstro },
-        { name: "Tailwind CSS", description: "Rapid design system", icon: SiTailwindcss },
-        { name: "Framer Motion", description: "Micro-interactions", icon: SiFramer },
+        { name: "Next.js 15", description: "Framework de React con App Router.", icon: SiNextdotjs },
+        { name: "React 19", description: "Biblioteca de interfaz de usuario.", icon: FaReact },
+        { name: "TypeScript", description: "Tipado estático para JavaScript.", icon: SiTypescript },
+        { name: "Tailwind CSS", description: "Framework CSS utility-first.", icon: SiTailwindcss },
+        { name: "Framer Motion", description: "Biblioteca de animaciones.", icon: SiFramer },
       ],
     },
     visualContent: {
@@ -81,26 +94,44 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
       ],
     },
     links: {
-      demo: "https://example.com/najmai",
-      github: "https://github.com/example/najmai",
+      github: "https://github.com/vKail/ecua-ticket-app",
     },
     collaborators: [
-      { name: "Sam Smith", role: "Full Stack Developer", github: "https://github.com/sams" },
+      { name: "Emilia Galarza", role: "Collaborator", github: "https://github.com/Emi1213" },
+      { name: "Adrian Jurado", role: "Collaborator", github: "https://github.com/vKail" },
+      { name: "Sebastián Camino", role: "Collaborator", github: "https://github.com/scaminom" },
+      { name: "Joshua Herrera", role: "Collaborator", github: "https://github.com/Gokochas10" },
     ],
   },
   {
     id: "savings_goals",
     title: "Savings Goals App",
-    shortDescription: "A personal financial management platform designed to help users track and achieve their savings goals. Featuring an AI-powered chat for personalized financial advice and habit recommendations, the app optimizes the user experience for over 1,000 active users through a clear and usable interface.",
+    shortDescription: "A personal financial management platform designed to help users track and achieve their savings goals. Featuring an AI-powered chat for personalized financial advice and habit recommendations.",
+    context: "Aplicación web integral para la gestión de metas de ahorro, dividida en un frontend moderno con Next.js y una API robusta en NestJS. Diseñada para ayudar a los usuarios a optimizar sus hábitos financieros mediante IA.",
+    objective: "Proporcionar una herramienta completa para que los usuarios establezcan, sigan y alcancen sus metas de ahorro con asistencia personalizada.",
+    highlights: [
+      "Autenticación JWT segura e integrada.",
+      "Dashboard interactivo para visualizar el progreso de ahorros.",
+      "Asistente financiero personal impulsado por IA (OpenRouter).",
+      "Notificaciones automáticas vía email y en la aplicación.",
+      "Gestión completa (CRUD) de metas, contribuciones y retiros.",
+    ],
     technicalStack: {
       frontend: [
-        { name: "Next.js", description: "React framework for building fast, server-rendered applications.", icon: SiNextdotjs },
-        { name: "TypeScript", description: "Ensures type safety and better developer experience.", icon: SiTypescript },
-        { name: "Tailwind CSS", description: "Utility-first framework for rapid and responsive UI design.", icon: SiTailwindcss },
+        { name: "Next.js 14", description: "Framework de React con App Router.", icon: SiNextdotjs },
+        { name: "TypeScript", description: "Tipado estático para robustez.", icon: SiTypescript },
+        { name: "Hero UI", description: "Basada en Tailwind CSS para diseño moderno.", icon: SiTailwindcss },
+        { name: "Zustand", description: "Gestión de estado ligera y flexible.", icon: SiVercel },
+        { name: "Chart.js", description: "Visualización de datos financieros.", icon: SiJavascript },
       ],
       backend: [
-        { name: "NestJS", description: " scalable Node.js framework for building efficient server-side applications.", icon: SiNestjs },
-        { name: ".NET", description: "High-performance framework for robust backend services.", icon: SiDotnet },
+        { name: "NestJS", description: "Framework escalable para el servidor.", icon: SiNestjs },
+        { name: "PostgreSQL", description: "Base de datos relacional con Prisma ORM.", icon: SiPostgresql },
+        { name: "Passport-JWT", description: "Estrategia de autenticación segura.", icon: SiJavascript },
+        { name: "OpenRouter AI", description: "Inteligencia artificial para recomendaciones.", icon: SiAmazon },
+      ],
+      devOps: [
+        { name: "Docker", description: "Contenedorización de servicios.", icon: SiDocker },
       ],
     },
     visualContent: {
@@ -128,12 +159,13 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
       ],
     },
     links: {
-      demo: "https://example.com/savings-goals",
-      github: "https://github.com/example/savings-goals",
+      github: "https://github.com/Chu2409/saving-goals-api",
     },
     collaborators: [
-      { name: "Chris Lee", role: "Backend Developer", github: "https://github.com/chrisl" },
-      { name: "Pat Taylor", role: "DevOps Engineer" },
+      { name: "Daniel Zhu", role: "Collaborator", github: "https://github.com/Chu2409" },
+      { name: "Joshua Herrera", role: "Collaborator", github: "https://github.com/Gokochas10" },
+      { name: "Emilia Galarza", role: "Collaborator", github: "https://github.com/Emi1213" },
+      { name: "Oscar Joel Ramírez", role: "Collaborator", github: "https://github.com/OscarJRM" },
     ],
   },
   {
