@@ -170,13 +170,22 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
   },
   {
     id: "website",
-    title: "website",
-    shortDescription: "Task management concept with AI assistance and minimal UX.",
+    title: "CodeCrafters Corporate Website",
+    shortDescription: "Sitio web corporativo para un equipo de desarrollo, incluyendo blog y presentación de miembros.",
+    context: "Simulación de un sitio web de negocios para el equipo de desarrollo CodeCrafters, diseñado para establecer presencia en línea, publicar artículos técnicos y promocionar a los participantes del equipo.",
+    objective: "Desarrollar una plataforma web profesional y moderna que sirva como carta de presentación para el equipo y sus servicios, utilizando tecnologías modernas.",
+    highlights: [
+      "Diseño corporativo moderno y profesional.",
+      "Sección de blog para contenido técnico y noticias.",
+      "Showcase de miembros del equipo y sus perfiles.",
+      "Optimizado para alto rendimiento y SEO.",
+    ],
     technicalStack: {
       frontend: [
-        { name: "React", description: "Components", icon: FaReact },
-        { name: "Astro", description: "Pages", icon: SiAstro },
-        { name: "Tailwind CSS", description: "Styles", icon: SiTailwindcss },
+        { name: "Next.js", description: "Framework principal para la estructura y SSR.", icon: SiNextdotjs },
+        { name: "React", description: "Biblioteca de UI para componentes interactivos.", icon: FaReact },
+        { name: "TypeScript", description: "Tipado estático para un desarrollo robusto.", icon: SiTypescript },
+        { name: "Tailwind CSS", description: "Estilizado rápido y responsivo.", icon: SiTailwindcss },
       ],
     },
     visualContent: {
@@ -189,12 +198,13 @@ export const PROJECTS_DETAIL_DATA: DetailedProject[] = [
       ],
     },
     links: {
-      demo: "https://example.com/taskai",
-      github: "https://github.com/example/taskai",
+      github: "https://github.com/vKail/codecrafters-corporate-website",
     },
     collaborators: [
-      { name: "Jordan Brown", role: "Product Manager" },
-      { name: "Casey White", role: "Frontend Developer", github: "https://github.com/caseyw" },
+      { name: "JMSebas", role: "Collaborator", github: "https://github.com/JMSebas" },
+      { name: "Emilia Galarza", role: "Collaborator", github: "https://github.com/Emi1213" },
+      { name: "Adrian Jurado", role: "Collaborator", github: "https://github.com/vKail" },
+      { name: "Daniel Zhu", role: "Collaborator", github: "https://github.com/Chu2409" },
     ],
   },
 ];
